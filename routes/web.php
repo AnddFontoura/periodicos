@@ -14,3 +14,37 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'subcategory'], function() {
+        Route::match(['get','post'], '/', 'SubCategoryController@list');
+        Route::get('form', 'SubCategoryController@create');
+        Route::get('form/{id}','SubCategoryController@edit');
+        Route::post('save', 'SubCategoryController@store');
+        Route::post('save/{id}', 'SubCategoryController@update');
+    });
+
+    Route::group(['prefix' => 'category'], function() {
+        Route::match(['get','post'], '/', 'SubCategoryController@list');
+        Route::get('form', 'SubCategoryController@create');
+        Route::get('form/{id}','SubCategoryController@edit');
+        Route::post('save', 'SubCategoryController@store');
+        Route::post('save/{id}', 'SubCategoryController@update');
+    });
+
+    Route::group(['prefix' => 'article'], function() {
+        Route::match(['get','post'], '/', 'SubCategoryController@list');
+        Route::get('form', 'SubCategoryController@create');
+        Route::get('form/{id}','SubCategoryController@edit');
+        Route::post('save', 'SubCategoryController@store');
+        Route::post('save/{id}', 'SubCategoryController@update');
+    });
+
+    Route::group(['prefix' => 'page'], function() {
+        Route::match(['get','post'], '/', 'SubCategoryController@list');
+        Route::get('form', 'SubCategoryController@create');
+        Route::get('form/{id}','SubCategoryController@edit');
+        Route::post('save', 'SubCategoryController@store');
+        Route::post('save/{id}', 'SubCategoryController@update');
+    });
+});
