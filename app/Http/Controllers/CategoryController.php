@@ -7,35 +7,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        $category =  Category::get();
-
-        return view('category.index', compact($category));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function validation(Request $request)
     {
         $this->validate($request, [
             'subcategoryId' => 'required|int',
@@ -43,48 +15,69 @@ class CategoryController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
+    public function index(Request $request)
     {
-        //
+        $category =  Category::get();
+
+        return view('category.index', compact('category'));
+    }
+
+    public function create(?int $id = null)
+    {
+        $category = null;
+
+        if ($id) {
+            $category = Category::where('id', $id)->first();
+        }
+
+        return view('category.form', compact('category'));
+    }
+
+    public function store(Request $request)
+    {
+        $this->validation($request);
+
+        $category = Category::create([
+            'subcategory_id' => $request->post('subCategoryId'),
+            'name' => $request->post('name'),
+            'image' => $request->post('image'),
+            'description' => $request->post('description')
+        ]);
+
+        return back();
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param int $id
      */
-    public function edit(Category $category)
+    public function show(int $id)
     {
-        //
+        $category = Category::where('id', $id)->first();
+
+        return view('category.show', compact('category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Category $category)
+    public function update(Request $request)
     {
-        //
+        $this->validation($request);
+
+        $request = $request->all();
+
+        $category = Category::where('id', $request['id'])
+            ->update([
+                'subcategory_id' => $request['subCategoryId'],
+                'name' => $request['name'],
+                'image' => $request['image'],
+                'description' => $request['description']
+            ]);
+
+        return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        $category = Category::where('id', $id)->delete();
+
+        return back();
     }
 }
