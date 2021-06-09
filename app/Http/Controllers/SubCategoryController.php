@@ -19,7 +19,7 @@ class SubCategoryController extends Controller
     {
         $subcategory = SubCategory::get();
 
-        return view('subcategory.index', compact('subcategory'));
+        return view('admin.subcategory.index', compact('subcategory'));
     }
 
    public function create(?int $id = null)
@@ -30,7 +30,7 @@ class SubCategoryController extends Controller
             $subcategory = SubCategory::where('id',$id)->first();
         }
 
-        return view('subcategory.form', compact('subcategory'));
+        return view('admin.subcategory.form', compact('subcategory'));
     }
 
     public function store(Request $request)
@@ -52,7 +52,7 @@ class SubCategoryController extends Controller
     {
         $subcategory = SubCategory::where('id', $id)->first();
 
-        return view('subcategory.show', compact($subcategory));
+        return view('admin.subcategory.show', compact($subcategory));
     }
 
     public function update(Request $request)
