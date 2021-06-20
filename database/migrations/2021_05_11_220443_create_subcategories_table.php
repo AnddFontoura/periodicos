@@ -13,14 +13,18 @@ class CreateSubcategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('subcategories', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name',200);
-            $table->text('description');
-            $table->text('image');
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        try {
+            Schema::create('sub_categories', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->string('name', 200);
+                $table->text('description', 1000);
+                $table->text('image');
+                $table->timestamps();
+                $table->softDeletes();
+            });
+        } catch (Exception $e) {
+            Schema::dropIfExists('sub_categories');
+        }   
     }
 
     /**
@@ -30,6 +34,6 @@ class CreateSubcategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subcategories');
+        Schema::dropIfExists('sub_categories');
     }
 }

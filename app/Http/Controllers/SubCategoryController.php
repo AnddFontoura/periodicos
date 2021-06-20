@@ -15,6 +15,13 @@ class SubCategoryController extends Controller
         ]);
     }
 
+    public function list(Request $request)
+    {
+        $subcategory = SubCategory::get();
+
+        return view('admin.subcategory.index', compact('subcategory'));
+    }
+
     public function index(Request $request)
     {
         $subcategory = SubCategory::get();

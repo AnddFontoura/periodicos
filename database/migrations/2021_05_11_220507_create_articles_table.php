@@ -13,21 +13,25 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name',200);
-            $table->text('path',1000);
-            $table->text('authors');
-            $table->text('resume');
-            $table->text('abstract');
-            $table->integer('pages');
-            $table->text('keywords');
-            $table->text('image');
-            $table->timestamps();
-            $table->softDeletes();
+        try {
+            Schema::create('articles', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->string('name',200);
+                $table->text('path',1000);
+                $table->text('authors');
+                $table->text('resume');
+                $table->text('abstract');
+                $table->integer('pages');
+                $table->text('keywords');
+                $table->text('image');
+                $table->timestamps();
+                $table->softDeletes();
 
-            $table->foreign('category_id')->references('id')->on('categories');
-        });
+                $table->foreign('category_id')->references('id')->on('categories');
+            });
+        } catch (Exception $e) {
+            Schema::dropIfExists('articles');
+        }   
     }
 
     /**

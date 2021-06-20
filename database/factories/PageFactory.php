@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Model::class, function (Faker $faker) {
     return [
-        //
+        'name' => $faker->unique()->name,
+        'description' => $faker->text(1000),
     ];
 });
