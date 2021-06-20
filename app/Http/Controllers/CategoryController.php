@@ -44,7 +44,7 @@ class CategoryController extends Controller
             'description' => $request->post('description')
         ]);
 
-        return back();
+        return view('category.form', compact('category'));
     }
 
     /**

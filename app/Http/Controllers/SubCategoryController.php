@@ -17,9 +17,9 @@ class SubCategoryController extends Controller
 
     public function list(Request $request)
     {
-        $subcategory = SubCategory::get();
+        $subcategories = SubCategory::paginate(20);
 
-        return view('admin.subcategory.index', compact('subcategory'));
+        return view('admin.subcategory.index', compact('subcategories'));
     }
 
     public function index(Request $request)
@@ -29,12 +29,12 @@ class SubCategoryController extends Controller
         return view('admin.subcategory.index', compact('subcategory'));
     }
 
-   public function create(?int $id = null)
+   public function create(int $id = null)
     {
         $subcategory = null;
 
         if ($id) {
-            $subcategory = SubCategory::where('id',$id)->first();
+            $subcategory = SubCategory::where('id', $id)->first();
         }
 
         return view('admin.subcategory.form', compact('subcategory'));
@@ -50,9 +50,9 @@ class SubCategoryController extends Controller
             'name' => $request['name'],
             'description' => $request['description'],
             'image' => $request['image']
-        ]);
-
-        return back();
+        ]); 
+        
+        return view('admin.subcategory.form', compact('subcategory'));
     }
 
     public function show($id)

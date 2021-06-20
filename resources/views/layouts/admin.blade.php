@@ -10,17 +10,17 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="js/jquery.js"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/admin.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 <body>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow justify-content-end">
@@ -30,7 +30,7 @@
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Subcategoria</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ url('subcategory') }}">Listar</a></li>
-                        <li><a class="dropdown-item" href="{{ url('subcategory/create') }}">Nova Subcategoria</a></li>
+                        <li><a class="dropdown-item" href="{{ url('subcategory/form') }}">Nova Subcategoria</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="{{ url('subcategory/deleted') }}">Deletados</a></li>
                     </ul>
