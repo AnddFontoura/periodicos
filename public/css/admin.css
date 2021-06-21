@@ -1,0 +1,11 @@
+
+a, a:visited, a:link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.fas-1 {
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 7px;
+}

@@ -9,6 +9,7 @@ class SubCategory extends Model
 {
     use SoftDeletes;
 
+    protected $table = "sub_categories";
     /**
      * @var string[]
      */

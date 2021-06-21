@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form action='{{ url("subcategory/save") }}@if(isset($subcategory)) /{{ $subcategory->id }}@endif' method='POST'>
+    <form action='{{ url("subcategory/save") }}@if(isset($subcategory))/{{ $subcategory->id }}@endif' method='POST'>
         @csrf
         <div class='card'>
             <div class='card-header'>

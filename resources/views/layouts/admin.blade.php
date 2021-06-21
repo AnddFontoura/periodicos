@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/0cc6f43f73.js" crossorigin="anonymous"></script>
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>

@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
                 $table->unsignedBigInteger('subcategory_id');
                 $table->string('name',200);
                 $table->text('description');
-                $table->text('image');
+                $table->text('image')->nullable(true);
                 $table->timestamps();
                 $table->softDeletes();
 

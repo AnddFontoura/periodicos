@@ -11,7 +11,7 @@ class SubCategoryController extends Controller
     public function validation(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:subcategory',
+            'name' => 'required|unique:sub_categories',
         ]);
     }
 
@@ -49,7 +49,7 @@ class SubCategoryController extends Controller
         $subcategory = SubCategory::create([
             'name' => $request['name'],
             'description' => $request['description'],
-            'image' => $request['image']
+            'image' => $request['image'] ?? null
         ]); 
         
         return view('admin.subcategory.form', compact('subcategory'));

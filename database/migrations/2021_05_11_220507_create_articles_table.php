@@ -23,7 +23,7 @@ class CreateArticlesTable extends Migration
                 $table->text('abstract');
                 $table->integer('pages');
                 $table->text('keywords');
-                $table->text('image');
+                $table->text('image')->nullable(true);
                 $table->timestamps();
                 $table->softDeletes();
 
