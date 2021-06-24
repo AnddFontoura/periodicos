@@ -22,6 +22,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('form/{id}','SubCategoryController@edit');
         Route::post('save', 'SubCategoryController@store');
         Route::post('save/{id}', 'SubCategoryController@update');
+        Route::get('view/{id}', 'SubCategoryController@view');
+        Route::get('delete/{id}', 'SubCategoryController@delete');
     });
 
     Route::group(['prefix' => 'category'], function() {

@@ -31,9 +31,9 @@
                             <td> {{ $subcategory->name }} </td>
                             <td> {{ $subcategory->description }} </td>
                             <td> 
-                                <a href=''><div class='btn btn-success fas fa-eye fa-lg'></div></a>
-                                <a href=''><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
-                                <a href=''><div class='btn btn-danger fas fa-trash-alt fa-lg'></div></a>
+                                <a href='{{ url("subcategory/view/" . $subcategory->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
+                                <a href='{{ url("subcategory/edit/" . $subcategory->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
+                                <a href='{{ url("subcategory/delete/" . $subcategory->id) }}'><div class='btn btn-danger fas fa-trash-alt fa-lg'></div></a>
                             </td>
                         </tr>
                         @endforeach
@@ -48,7 +48,7 @@
             @endif
         </div>
 
-        @if(!$subcategories->links())
+        @if($subcategories->links())
         <div class='card-footer'>
             {{ $subcategories->links() }}
         </div>

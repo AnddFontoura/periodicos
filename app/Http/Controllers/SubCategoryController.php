@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Articles;
 use App\Category;
 use App\SubCategory;
 use Illuminate\Http\Request;
@@ -57,9 +58,17 @@ class SubCategoryController extends Controller
 
     public function show($id)
     {
-        $subcategory = SubCategory::where('id', $id)->first();
-
-        return view('admin.subcategory.show', compact($subcategory));
+        $subcategory = SubCategory::where('id', $id)
+            ->first();
+        
+        $countCategory = Category::where('subcategory_id', $subcategory->id)
+            ->count('id');
+        
+        $countArticle = Articles::join('category','category.id','=','articles.category_id')
+            ->where('category.subcategory_id', $subcategory->id)
+            ->count('articles.id');
+        
+        return view('admin.subcategory.show', compact('subcategory', 'countCategory', 'countArticle'));
     }
 
     public function update(Request $request)

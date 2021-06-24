@@ -16,6 +16,7 @@ class CreateArticlesTable extends Migration
         try {
             Schema::create('articles', function (Blueprint $table) {
                 $table->bigIncrements('id');
+                $table->unsignedBigInteger('category_id');
                 $table->string('name',200);
                 $table->text('path',1000);
                 $table->text('authors');
