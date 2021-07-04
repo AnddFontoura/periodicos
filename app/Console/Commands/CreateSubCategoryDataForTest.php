@@ -12,7 +12,7 @@ class CreateSubCategoryDataForTest extends Command
      *
      * @var string
      */
-    protected $signature = 'command:create-fake-subcategory-data {amount = 1}';
+    protected $signature = 'command:create-fake-subcategory-data {amount}';
 
     /**
      * The console command description.
@@ -38,7 +38,7 @@ class CreateSubCategoryDataForTest extends Command
      */
     public function handle()
     {
-        $amount = $this->argument('amount');
+        $amount = $this->argument('amount') ?? 1;
         
         $bar = $this->output->createProgressBar($amount);
 

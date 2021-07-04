@@ -56,7 +56,7 @@ class SubCategoryController extends Controller
         return view('admin.subcategory.form', compact('subcategory'));
     }
 
-    public function show($id)
+    public function view($id)
     {
         $subcategory = SubCategory::where('id', $id)
             ->first();
@@ -64,11 +64,11 @@ class SubCategoryController extends Controller
         $countCategory = Category::where('subcategory_id', $subcategory->id)
             ->count('id');
         
-        $countArticle = Articles::join('category','category.id','=','articles.category_id')
-            ->where('category.subcategory_id', $subcategory->id)
+        $countArticle = Articles::join('categories','categories.id','=','articles.category_id')
+            ->where('categories.subcategory_id', $subcategory->id)
             ->count('articles.id');
         
-        return view('admin.subcategory.show', compact('subcategory', 'countCategory', 'countArticle'));
+        return view('admin.subcategory.view', compact('subcategory', 'countCategory', 'countArticle'));
     }
 
     public function update(Request $request)
@@ -86,7 +86,7 @@ class SubCategoryController extends Controller
         return back();
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $subcategory = Subcategory::where('id', $id)->delete();
 

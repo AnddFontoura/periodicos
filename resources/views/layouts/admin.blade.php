@@ -14,6 +14,7 @@
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -61,5 +62,7 @@
             @yield('content')
         </main>
     </div>
+
+    @yield('js')
 </body>
 </html>

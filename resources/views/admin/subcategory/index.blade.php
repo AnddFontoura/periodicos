@@ -33,7 +33,7 @@
                             <td> 
                                 <a href='{{ url("subcategory/view/" . $subcategory->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
                                 <a href='{{ url("subcategory/edit/" . $subcategory->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
-                                <a href='{{ url("subcategory/delete/" . $subcategory->id) }}'><div class='btn btn-danger fas fa-trash-alt fa-lg'></div></a>
+                                <div class='btn btn-danger fas fa-trash-alt fa-lg deleteCategory' data-id='{{ $subcategory->id }}'></div>
                             </td>
                         </tr>
                         @endforeach
@@ -55,4 +55,51 @@
         @endif
     </div>
 </div>
+@endsection
+
+@section('js')
+    <script>
+        $('.deleteCategory').on('click', function() {
+            var id = $(this).data('id');
+            Swal.fire({
+                title: 'Deseja realmente excluir esse registro?',
+                showDenyButton: true,
+                confirmButtonText: `Deletar`,
+                denyButtonText: `Não deletar`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    var request = $.ajax({
+                        url: '{{ url("subcategory/delete") }}' + '/' + id,
+                        method: "GET",
+                        dataType: "json"
+                    });
+                                
+                    request.done(function() {
+                        Swal.fire({
+                            title: 'Pronto!',
+                            text: 'A alteração foi realizada com sucesso',
+                            type: 'success',
+                            buttons: true,
+                        })
+                        .then((buttonClick) => {
+                            if (buttonClick) {
+                            location.reload();
+                            }
+                        });
+                        });
+
+                        request.fail(function( ) {
+                        Swal.fire(
+                            'Erro',
+                            'Algum problema aconteceu, certifique-se de que a conexão com a internet esteja OK e que você esteja logado no sistema.',
+                            'error'
+                        )
+                    });
+                } else if (result.isDenied) {
+                    Swal.fire('Nenhum registro deletado', '', 'info')
+                }
+            });
+        });
+    </script>
 @endsection
