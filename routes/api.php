@@ -12,7 +12,12 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+$group = [
+    //'middleware' => 'auth:api',
+];
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group($group, function () {
+    Route::group(['prefix' => 'subcategory'], function () {
+        Route::post('delete', 'Api\SubCategoryApiController@delete');
+    });
 });

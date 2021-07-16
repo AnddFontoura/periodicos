@@ -70,9 +70,10 @@
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                     var request = $.ajax({
-                        url: '{{ url("subcategory/delete") }}' + '/' + id,
-                        method: "GET",
-                        dataType: "json"
+                        url: '{{ url("api/subcategory/delete") }}',
+                        method: "POST",
+                        dataType: "json",
+                        data: { subCategoryId : id },
                     });
                                 
                     request.done(function() {
