@@ -19,7 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'subcategory'], function() {
         Route::match(['get','post'], '/', 'SubCategoryController@list');
         Route::get('form', 'SubCategoryController@create');
-        Route::get('form/{id}','SubCategoryController@edit');
+        Route::get('form/{id}','SubCategoryController@create');
         Route::post('save', 'SubCategoryController@store');
         Route::post('save/{id}', 'SubCategoryController@update');
         Route::get('view/{id}', 'SubCategoryController@view');

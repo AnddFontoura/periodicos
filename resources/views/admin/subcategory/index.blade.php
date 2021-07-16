@@ -30,16 +30,16 @@
                             <td> {{ $subcategory->id }} </td>
                             <td> {{ $subcategory->name }} </td>
                             <td> {{ $subcategory->description }} </td>
-                            <td> 
+                            <td>
                                 <a href='{{ url("subcategory/view/" . $subcategory->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
-                                <a href='{{ url("subcategory/edit/" . $subcategory->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
+                                <a href='{{ url("subcategory/form/" . $subcategory->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
                                 <div class='btn btn-danger fas fa-trash-alt fa-lg deleteCategory' data-id='{{ $subcategory->id }}'></div>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-            @else 
+            @else
                 <div class="alert alert-danger" role="alert">
                     Não existem Sub Categorias cadastradas. Você pode começar a cadastrar agora.
                 </div>
@@ -75,7 +75,7 @@
                         dataType: "json",
                         data: { subCategoryId : id },
                     });
-                                
+
                     request.done(function() {
                         Swal.fire({
                             title: 'Pronto!',

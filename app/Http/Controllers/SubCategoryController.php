@@ -51,8 +51,8 @@ class SubCategoryController extends Controller
             'name' => $request['name'],
             'description' => $request['description'],
             'image' => $request['image'] ?? null
-        ]); 
-        
+        ]);
+
         return view('admin.subcategory.form', compact('subcategory'));
     }
 
@@ -60,28 +60,34 @@ class SubCategoryController extends Controller
     {
         $subcategory = SubCategory::where('id', $id)
             ->first();
-        
+
         $countCategory = Category::where('subcategory_id', $subcategory->id)
             ->count('id');
-        
+
         $countArticle = Articles::join('categories','categories.id','=','articles.category_id')
             ->where('categories.subcategory_id', $subcategory->id)
             ->count('articles.id');
-        
+
         return view('admin.subcategory.view', compact('subcategory', 'countCategory', 'countArticle'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, int $id)
     {
-        $this->validation($request);
-
         $request = $request->all();
 
-        $subcategory = Subcategory::where('id', $request['id'])
-            ->update([
-                'name' => $request['name'],
-                'description' => $request['description']
-            ]);
+        $checkIfNameIsBeingUsedInAnotherSubCategory = SubCategory::where('name', $request['name'])
+            ->where('id', '<>', $id)
+            ->first();
+
+        if (empty($checkIfNameIsBeingUsedInAnotherSubCategory)) {
+            $subcategory = Subcategory::where('id', $id)
+                ->update([
+                    'name' => $request['name'],
+                    'description' => $request['description']
+                ]);
+        } else {
+            return back()->withErrors(['name' =>     'Name already being used in another subcategory']);
+        }
 
         return back();
     }
