@@ -27,11 +27,11 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix' => 'category'], function() {
-        Route::match(['get','post'], '/', 'SubCategoryController@list');
-        Route::get('form', 'SubCategoryController@create');
-        Route::get('form/{id}','SubCategoryController@edit');
-        Route::post('save', 'SubCategoryController@store');
-        Route::post('save/{id}', 'SubCategoryController@update');
+        Route::match(['get','post'], '/', 'CategoryController@list');
+        Route::get('form', 'CategoryController@create');
+        Route::get('form/{id}','CategoryController@edit');
+        Route::post('save', 'CategoryController@store');
+        Route::post('save/{id}', 'CategoryController@update');
     });
 
     Route::group(['prefix' => 'article'], function() {

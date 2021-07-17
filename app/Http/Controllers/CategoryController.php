@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Articles;
 use App\Category;
+use App\SubCategory;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -13,6 +15,13 @@ class CategoryController extends Controller
             'subcategoryId' => 'required|int',
             'name' => 'required|unique:category'
         ]);
+    }
+
+    public function list(Request $request)
+    {
+        $categories = Category::paginate(20);
+
+        return view('admin.category.index', compact('categories'));
     }
 
     public function index(Request $request)
@@ -37,31 +46,40 @@ class CategoryController extends Controller
     {
         $this->validation($request);
 
+        $request = $request->all();
+
         $category = Category::create([
-            'subcategory_id' => $request->post('subCategoryId'),
-            'name' => $request->post('name'),
-            'image' => $request->post('image'),
-            'description' => $request->post('description')
+            'subcategory_id' => $request['subCategoryId'],
+            'name' => $request['name'],
+            'image' => $request['image'],
+            'description' => $request['description']
         ]);
 
         return view('category.form', compact('category'));
     }
 
-    /**
-     * @param int $id
-     */
-    public function show(int $id)
+    public function view($id)
     {
-        $category = Category::where('id', $id)->first();
+        $subcategory = SubCategory::where('id', $id)
+            ->first();
 
-        return view('category.show', compact('category'));
+        $countCategory = Category::where('subcategory_id', $subcategory->id)
+            ->count('id');
+
+        $countArticle = Articles::join('categories','categories.id','=','articles.category_id')
+            ->where('categories.subcategory_id', $subcategory->id)
+            ->count('articles.id');
+
+        return view('admin.category.view', compact('subcategory', 'countCategory', 'countArticle'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, int $id)
     {
-        $this->validation($request);
-
         $request = $request->all();
+
+        $checkIfNameIsBeingUsedInAnotherSubCategory = SubCategory::where('name', $request['name'])
+            ->where('id', '<>', $id)
+            ->first();
 
         $category = Category::where('id', $request['id'])
             ->update([

@@ -20,4 +20,8 @@ Route::group($group, function () {
     Route::group(['prefix' => 'subcategory'], function () {
         Route::post('delete', 'Api\SubCategoryApiController@delete');
     });
+
+    Route::group(['prefix' => 'category'], function () {
+        Route::post('delete', 'Api\CategoryApiController@delete');
+    });
 });

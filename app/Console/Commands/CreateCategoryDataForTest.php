@@ -6,7 +6,7 @@ use App\Category;
 use App\SubCategory;
 use Illuminate\Console\Command;
 
-class createCategoryDataForTest extends Command
+class CreateCategoryDataForTest extends Command
 {
     /**
      * The name and signature of the console command.
@@ -54,9 +54,12 @@ class createCategoryDataForTest extends Command
         $bar->start();
 
         for ($i = 0; $i < $amount; $i++) {
-            Factory(SubCategory::class)->create([
-                'category_id' => SubCategory::inRandomOrder()->first()->id
+            $subCategory = SubCategory::inRandomOrder()->first();
+
+            Factory(Category::class)->create([
+                'subcategory_id' => $subCategory->id
             ]);
+
             $bar->advance();
         }
 

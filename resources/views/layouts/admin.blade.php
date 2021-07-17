@@ -37,6 +37,15 @@
                         <li><a class="dropdown-item" href="{{ url('subcategory/deleted') }}">Deletados</a></li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Categoria</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ url('category') }}">Listar</a></li>
+                        <li><a class="dropdown-item" href="{{ url('category/form') }}">Nova Subcategoria</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ url('category/deleted') }}">Deletados</a></li>
+                    </ul>
+                </li>
                 @endauth
                 <!-- Authentication Links -->
                 @guest
