@@ -41,7 +41,7 @@
                 </table>
             @else
                 <div class="alert alert-danger" role="alert">
-                    Não existem Sub Categorias cadastradas. Você pode começar a cadastrar agora.
+                    Não existem Categorias cadastradas. Você pode começar a cadastrar agora.
                 </div>
 
                 <a href='{{ url("category/form") }}' class='btn btn-lg btn-success'> Cadastrar Categoria </a>

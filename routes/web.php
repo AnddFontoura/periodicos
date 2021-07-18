@@ -32,6 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('form/{id}','CategoryController@edit');
         Route::post('save', 'CategoryController@store');
         Route::post('save/{id}', 'CategoryController@update');
+        Route::get('view/{id}', 'CategoryController@view');
+        Route::get('delete/{id}', 'CategoryController@delete');
     });
 
     Route::group(['prefix' => 'article'], function() {

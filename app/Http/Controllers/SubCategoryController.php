@@ -91,11 +91,4 @@ class SubCategoryController extends Controller
 
         return back();
     }
-
-    public function delete($id)
-    {
-        $subcategory = Subcategory::where('id', $id)->delete();
-
-        return back();
-    }
 }

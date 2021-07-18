@@ -12,8 +12,8 @@ class CategoryController extends Controller
     public function validation(Request $request)
     {
         $this->validate($request, [
-            'subcategoryId' => 'required|int',
-            'name' => 'required|unique:category'
+            'subCategoryId' => 'required|int',
+            'name' => 'required|unique:categories'
         ]);
     }
 
@@ -34,12 +34,13 @@ class CategoryController extends Controller
     public function create(?int $id = null)
     {
         $category = null;
+        $subCategories = SubCategory::orderBy('name', 'asc')->get();
 
         if ($id) {
             $category = Category::where('id', $id)->first();
         }
 
-        return view('category.form', compact('category'));
+        return view('admin.category.form', compact('category','subCategories'));
     }
 
     public function store(Request $request)
@@ -48,14 +49,16 @@ class CategoryController extends Controller
 
         $request = $request->all();
 
+        $subCategories = SubCategory::orderBy('name', 'asc')->get();
+
         $category = Category::create([
             'subcategory_id' => $request['subCategoryId'],
             'name' => $request['name'],
-            'image' => $request['image'],
+            'image' => $request['image'] ?? null,
             'description' => $request['description']
         ]);
 
-        return view('category.form', compact('category'));
+        return view('admin.category.form', compact('category','subCategories'));
     }
 
     public function view($id)
@@ -88,13 +91,6 @@ class CategoryController extends Controller
                 'image' => $request['image'],
                 'description' => $request['description']
             ]);
-
-        return back();
-    }
-
-    public function destroy($id)
-    {
-        $category = Category::where('id', $id)->delete();
 
         return back();
     }
