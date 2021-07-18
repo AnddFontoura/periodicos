@@ -63,17 +63,20 @@ class CategoryController extends Controller
 
     public function view($id)
     {
-        $subcategory = SubCategory::where('id', $id)
+        $category = Category::where('id', $id)
             ->first();
 
-        $countCategory = Category::where('subcategory_id', $subcategory->id)
+        $subcategory = SubCategory::where('id', $category->subcategory_id)
+            ->first();
+
+        $countCategory = Category::where('subcategory_id', $category->subcategory_id)
             ->count('id');
 
         $countArticle = Articles::join('categories','categories.id','=','articles.category_id')
             ->where('categories.subcategory_id', $subcategory->id)
             ->count('articles.id');
 
-        return view('admin.category.view', compact('subcategory', 'countCategory', 'countArticle'));
+        return view('admin.category.view', compact('category','subcategory', 'countCategory', 'countArticle'));
     }
 
     public function update(Request $request, int $id)
