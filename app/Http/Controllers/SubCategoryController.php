@@ -86,7 +86,7 @@ class SubCategoryController extends Controller
                     'description' => $request['description']
                 ]);
         } else {
-            return back()->withErrors(['name' =>     'Name already being used in another subcategory']);
+            return back()->withErrors(['name' => 'Name already being used in another subcategory']);
         }
 
         return back();

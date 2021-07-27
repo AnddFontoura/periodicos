@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'category'], function() {
         Route::match(['get','post'], '/', 'CategoryController@list');
         Route::get('form', 'CategoryController@create');
-        Route::get('form/{id}','CategoryController@edit');
+        Route::get('form/{id}','CategoryController@create');
         Route::post('save', 'CategoryController@store');
         Route::post('save/{id}', 'CategoryController@update');
         Route::get('view/{id}', 'CategoryController@view');
@@ -37,11 +37,13 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix' => 'article'], function() {
-        Route::match(['get','post'], '/', 'SubCategoryController@list');
-        Route::get('form', 'SubCategoryController@create');
-        Route::get('form/{id}','SubCategoryController@edit');
-        Route::post('save', 'SubCategoryController@store');
-        Route::post('save/{id}', 'SubCategoryController@update');
+        Route::match(['get','post'], '/', 'ArticleController@list');
+        Route::get('form', 'ArticleController@create');
+        Route::get('form/{id}','ArticleController@create');
+        Route::post('save', 'ArticleController@store');
+        Route::post('save/{id}', 'ArticleController@update');
+        Route::get('view/{id}', 'ArticleController@view');
+        Route::get('delete/{id}', 'ArticleController@delete');
     });
 
     Route::group(['prefix' => 'page'], function() {

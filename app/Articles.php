@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Articles extends Model
@@ -25,7 +26,8 @@ class Articles extends Model
         'updated_at',
     ];
 
-    public function category() {
+    public function category(): belongsTo
+    {
         return $this->belongsTo(Category::class, 'category_id');
     }
 }

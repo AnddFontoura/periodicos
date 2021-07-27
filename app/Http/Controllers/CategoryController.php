@@ -87,13 +87,17 @@ class CategoryController extends Controller
             ->where('id', '<>', $id)
             ->first();
 
-        $category = Category::where('id', $request['id'])
-            ->update([
-                'subcategory_id' => $request['subCategoryId'],
-                'name' => $request['name'],
-                'image' => $request['image'],
-                'description' => $request['description']
-            ]);
+        if (empty($checkIfNameIsBeingUsedInAnotherSubCategory)) {
+            $category = Category::where('id', $request['id'])
+                ->update([
+                    'subcategory_id' => $request['subCategoryId'],
+                    'name' => $request['name'],
+                    'image' => $request['image'],
+                    'description' => $request['description']
+                ]);
+        } else {
+            return back()->withErrors(['name' =>  'Name already being used in another category']);
+        }
 
         return back();
     }
