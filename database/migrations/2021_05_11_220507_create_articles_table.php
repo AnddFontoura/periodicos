@@ -18,7 +18,7 @@ class CreateArticlesTable extends Migration
                 $table->bigIncrements('id');
                 $table->unsignedBigInteger('subcategory_id');
                 $table->string('name',200);
-                $table->text('path',1000);
+                $table->string('path',1000);
                 $table->text('authors');
                 $table->text('resume');
                 $table->text('abstract');
@@ -28,10 +28,11 @@ class CreateArticlesTable extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 
-                $table->foreign('subcategory_id')->references('id')->on('subcategories');
+                $table->foreign('subcategory_id')->references('id')->on('sub_categories');
             });
         } catch (Exception $e) {
             Schema::dropIfExists('articles');
+            dd($e->getMessage());
         }
     }
 

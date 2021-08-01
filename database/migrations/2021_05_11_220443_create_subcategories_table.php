@@ -24,7 +24,8 @@ class CreateSubcategoriesTable extends Migration
             });
         } catch (Exception $e) {
             Schema::dropIfExists('sub_categories');
-        }   
+            dd($e->getMessage());
+        }
     }
 
     /**

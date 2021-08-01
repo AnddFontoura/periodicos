@@ -27,7 +27,8 @@ class CreateCategoriesTable extends Migration
             });
         } catch (Exception $e) {
             Schema::dropIfExists('categories');
-        }   
+            dd($e->getMessage());
+        }
     }
 
     /**

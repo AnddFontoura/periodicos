@@ -23,7 +23,8 @@ class CreatePagesTable extends Migration
             });
         } catch (Exception $e) {
             Schema::dropIfExists('pages');
-        }   
+            dd($e->getMessage());
+        }
     }
 
     /**
