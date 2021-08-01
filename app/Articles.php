@@ -26,8 +26,8 @@ class Articles extends Model
         'updated_at',
     ];
 
-    public function category(): belongsTo
+    public function subcategory(): belongsTo
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(SubCategory::class, 'subcategory_id');
     }
 }

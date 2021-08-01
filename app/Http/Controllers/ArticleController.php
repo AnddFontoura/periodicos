@@ -5,18 +5,23 @@ namespace App\Http\Controllers;
 use App\Articles;
 use App\Category;
 use App\SubCategory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class ArticleController extends Controller
 {
     protected function validation(Request $request): void
     {
         $this->validate($request, [
-            'name' => 'required|max-size:254',
+            'name' => 'required|max:254',
             'authors' => 'required',
             'resume' => 'required',
             'abstract' => 'required',
             'keywords' => 'required',
+            'fileToUpload' => 'required|max:15000',
         ]);
     }
 
@@ -34,16 +39,16 @@ class ArticleController extends Controller
         return view('admin.article.index', compact('articles'));
     }
 
-    public function create(?int $id)
+    public function create(int $id = null)
     {
         $article = null;
-        $categories = Category::orderBy('name', 'asc')->get();
+        $subCategories = SubCategory::orderBy('name', 'asc')->get();
 
         if ($id) {
             $article = Articles::where('id', $id)->first();
         }
 
-        return view('admin.article.form', compact('article', 'categories'));
+        return view('admin.article.form', compact('article', 'subCategories'));
     }
 
     public function store(Request $request)
@@ -55,13 +60,21 @@ class ArticleController extends Controller
         $categories = Category::orderBy('name', 'asc')->get();
 
         $article = Articles::create([
-            'category_id' => $request['categoryId'],
+            'subcategory_id' => $request['subCategoryId'],
             'name' => $request['name'],
             'authors' => $request['authors'],
             'resume' => $request['resume'],
             'abstract' => $request['abstract'],
             'keywords' => $request['keywords'],
         ]);
+
+        if ($request['fileToUpload']) {
+            $fileName = $article->id . Str::slug($article->name) . Carbon::now()->timestamp;
+            Storage::disk('articles')->put($fileName, $request['fileToUpload']);
+
+            $article->path = $fileName;
+            $article->save();
+        }
 
         return view('admin.article.form', compact('article','categories'));
     }

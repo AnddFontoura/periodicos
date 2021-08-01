@@ -16,7 +16,7 @@ class CreateArticlesTable extends Migration
         try {
             Schema::create('articles', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->unsignedBigInteger('category_id');
+                $table->unsignedBigInteger('subcategory_id');
                 $table->string('name',200);
                 $table->text('path',1000);
                 $table->text('authors');
@@ -28,11 +28,11 @@ class CreateArticlesTable extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 
-                $table->foreign('category_id')->references('id')->on('categories');
+                $table->foreign('subcategory_id')->references('id')->on('subcategories');
             });
         } catch (Exception $e) {
             Schema::dropIfExists('articles');
-        }   
+        }
     }
 
     /**

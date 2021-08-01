@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form action='{{ url("category/save") }}@if(isset($category))/{{ $category->id }}@endif' method='POST'>
+    <form action='{{ url("article/save") }}@if(isset($category))/{{ $category->id }}@endif' method='POST'>
         @csrf
         <div class='card'>
             <div class='card-header'>
@@ -33,30 +33,40 @@
                 @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
+
                 <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingSubCategoryName" placeholder="Nome da categoria" value='@if(isset($category)){{ $category->name }}@endif' name='name'>
-                    <label for="floatingCategoryName">Nome do artigo </label>
+                    <input type="text" class="form-control" id="floatingArticleName" placeholder="Nome do artigo" value='@if(isset($category)){{ $category->name }}@endif' name='name'>
+                    <label for="floatingArticleName">Nome do artigo </label>
                 </div>
-                <div class="form-floating">
-                    <label for="floatingDescription">Autores</label>
-                    <textarea id="ckeditor-author" name="authors"> </textarea>
+
+                <div class="mb-3">
+                    <label class="form-label">Autores</label>
+                    <textarea id="ckeditor-author" name="authors">@if(isset($article)){{ $article->authors }}@endif</textarea>
                 </div>
-                <div class="form-floating">
-                    <label for="floatingDescription">Resumo</label>
-                    <textarea id="ckeditor-resume" name="resume"> </textarea>
+
+                <div class="mb-3">
+                    <label class="form-label">Resumo</label>
+                    <textarea id="ckeditor-resume" name="resume">@if(isset($article)){{ $article->resume }}@endif</textarea>
                 </div>
-                <div class="form-floating">
-                    <label for="floatingDescription">Abstract</label>
-                    <textarea id="ckeditor-abstract" name="abstract"> </textarea>
+
+                <div class="mb-3">
+                    <label class="form-label">Abstract</label>
+                    <textarea id="ckeditor-abstract" name="abstract">@if(isset($article)){{ $article->abstract }}@endif</textarea>
                 </div>
-                <div class="form-floating">
-                    <label for="floatingDescription">Palavras-chaves</label>
-                    <textarea name="keywords"> </textarea>
+
+                <div class="mb-3">
+                    <label class="form-label">Palavras-chaves</label>
+                    <textarea class="form-control" name="keywords">@if(isset($article)){{ $article->keywords }}@endif</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Arquivo do Artigo</label>
+                    <input class="form-control" type="file" id="formFile" name="fileToUpload">
                 </div>
             </div>
 
             <div class='card-footer'>
-                <button type="submit" class='btn bnt-lg btn-success'> @if(isset($category)) Atualizar @else Cadastrar @endif nova categoria </button>
+                <button type="submit" class='btn bnt-lg btn-success'> @if(isset($category)) Atualizar @else Cadastrar @endif novo artigo </button>
             </div>
         </div>
     </form>
