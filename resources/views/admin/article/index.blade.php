@@ -6,7 +6,7 @@
         <div class='card-header'>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('category') }}">Categoria</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('article') }}">Artigos</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Listar</li>
                 </ol>
             </nav>
@@ -31,8 +31,8 @@
                             <td> {{ $article->subcategory->name }} </td>
                             <td> {{ $article->name }} </td>
                             <td>
-                                <a href='{{ url("category/view/" . $article->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
-                                <a href='{{ url("category/form/" . $article->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
+                                <a href='{{ url("article/view/" . $article->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
+                                <a href='{{ url("article/form/" . $article->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
                                 <div class='btn btn-danger fas fa-trash-alt fa-lg deleteCategory' data-id='{{ $article->id }}'></div>
                             </td>
                         </tr>
@@ -70,10 +70,10 @@
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                     var request = $.ajax({
-                        url: '{{ url("api/category/delete") }}',
+                        url: '{{ url("api/article/delete") }}',
                         method: "POST",
                         dataType: "json",
-                        data: { categoryId : id },
+                        data: { articleId : id },
                     });
 
                     request.done(function() {

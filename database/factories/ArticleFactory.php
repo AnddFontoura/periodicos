@@ -2,11 +2,11 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Model;
+use App\Articles;
 use App\SubCategory;
 use Faker\Generator as Faker;
 
-$factory->define(Model::class, function (Faker $faker) {
+$factory->define(Articles::class, function (Faker $faker) {
 
     $subCategoryId = Factory(SubCategory::class)->create()->id;
 
@@ -19,5 +19,6 @@ $factory->define(Model::class, function (Faker $faker) {
         'abstract' => $faker->text(500),
         'keywords' => $faker->text(200),
         'image' => $faker->imageUrl(),
+        'pages' => rand(1,12)
     ];
 });

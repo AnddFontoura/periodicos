@@ -35,7 +35,7 @@
                 @enderror
 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingArticleName" placeholder="Nome do artigo" value='@if(isset($category)){{ $category->name }}@endif' name='name'>
+                    <input type="text" class="form-control" id="floatingArticleName" placeholder="Nome do artigo" value='@if(isset($article)){{ $article->name }}@endif' name='name'>
                     <label for="floatingArticleName">Nome do artigo </label>
                 </div>
 

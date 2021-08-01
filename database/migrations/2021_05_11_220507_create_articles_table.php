@@ -22,7 +22,7 @@ class CreateArticlesTable extends Migration
                 $table->text('authors');
                 $table->text('resume');
                 $table->text('abstract');
-                $table->integer('pages');
+                $table->integer('pages')->default(0);
                 $table->text('keywords');
                 $table->text('image')->nullable(true);
                 $table->timestamps();
