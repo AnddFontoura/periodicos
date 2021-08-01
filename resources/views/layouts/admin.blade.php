@@ -16,6 +16,7 @@
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -47,6 +48,15 @@
                         <li><a class="dropdown-item" href="{{ url('category/form') }}">Nova Subcategoria</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="{{ url('category/deleted') }}">Deletados</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Artigo</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ url('article') }}">Listar</a></li>
+                        <li><a class="dropdown-item" href="{{ url('article/form') }}">Novo Artigo</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ url('article/deleted') }}">Deletados</a></li>
                     </ul>
                 </li>
                 @endauth

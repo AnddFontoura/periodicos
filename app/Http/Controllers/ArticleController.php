@@ -7,7 +7,7 @@ use App\Category;
 use App\SubCategory;
 use Illuminate\Http\Request;
 
-class ArticlesController extends Controller
+class ArticleController extends Controller
 {
     protected function validation(Request $request): void
     {
