@@ -16,14 +16,11 @@ class CreateCategoriesTable extends Migration
         try {
             Schema::create('categories', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->unsignedBigInteger('subcategory_id');
                 $table->string('name',200);
                 $table->text('description');
                 $table->text('image')->nullable(true);
                 $table->timestamps();
                 $table->softDeletes();
-
-                $table->foreign('subcategory_id')->references('id')->on('sub_categories');
             });
         } catch (Exception $e) {
             Schema::dropIfExists('categories');

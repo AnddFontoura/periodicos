@@ -15,6 +15,21 @@
             </div>
 
             <div class='card-body'>
+                <label for="floatingCategoryName">Nome da Sub categoria </label>
+                @error('categoryId')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <div class="form-floating mb-3">
+                    <select class="form-control select2" name="categoryId" id="floatingCategoryName" placeholder="Nome da Categoria">
+                        @if(count($categories) > 0)
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}" @if(isset($subcategory) && $category->subcategory_id == $subCategory->id) selected @endif> {{ $category->name }} </option>
+                            @endforeach
+                        @else
+                            <option selected>Nenhuma categoria cadastrada, antes de continuar você deve cadastra ao menos uma</option>
+                        @endif
+                    </select>
+                </div>
                 @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

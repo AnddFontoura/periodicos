@@ -6,7 +6,7 @@
         <div class='card-header'>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('category') }}">Categoria</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('article') }}">Categoria</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Exibir</li>
                 </ol>
             </nav>
@@ -15,24 +15,8 @@
         <div class='card-body'>
             <div class="p-5 mb-4 bg-light rounded-3">
                 <div class="container-fluid py-5">
-                    <h1 class="display-5 fw-bold">{{ $category->name }} ({{ $category->subCategory->name }})</h1>
-                    <p class="col-md-8 fs-4">{{ $category->description }}</p>
-                </div>
-            </div>
-
-            <div class="row text-center">
-                <div class="col-md-6">
-                    <div class="h-100 p-3 text-white bg-success rounded-3">
-                    <h2>Categorias na mesma SubCategoria</h2>
-                    <p>{{ $countCategory }}</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="h-100 p-3 text-white bg-primary rounded-3">
-                    <h2>Artigos</h2>
-                    <p>{{ $countArticle }}</p>
-                    </div>
+                    <h1 class="display-5 fw-bold">{{ $article->name }}</h1>
+                    <p class="col-md-8 fs-4">{{ $category->name }} / {{ $subCategory->name }}</p>
                 </div>
             </div>
         </div>

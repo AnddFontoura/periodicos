@@ -10,7 +10,6 @@ class Category extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'subcategory_id',
         'name',
         'description',
         'image',
@@ -21,8 +20,4 @@ class Category extends Model
         'created_at',
         'updated_at',
     ];
-
-    public function subCategory() {
-        return $this->belongsTo(SubCategory::class, 'subcategory_id');
-    }
 }

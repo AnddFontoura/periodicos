@@ -46,6 +46,7 @@ class CreateSubCategoryDataForTest extends Command
 
         for ($i = 0; $i < $amount; $i++) {
             Factory(SubCategory::class)->create();
+
             $bar->advance();
         }
 

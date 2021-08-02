@@ -18,8 +18,8 @@
                     <thead>
                         <tr>
                         <th scope="col" width='10%'>#</th>
-                        <th scope="col" width='30%'>Nome</th>
-                        <th scope="col" width='40%'>Descrição</th>
+                        <th scope="col" width='30%'>Categoria</th>
+                        <th scope="col" width='30%'>Sub Categoria</th>
                         <th scope="col" width='20%' class='text-right'>Opções</th>
                         </tr>
                     </thead>
@@ -28,8 +28,8 @@
                         @foreach($subcategories as $subcategory)
                         <tr>
                             <td> {{ $subcategory->id }} </td>
+                            <td> {{ $subcategory->category->name }} </td>
                             <td> {{ $subcategory->name }} </td>
-                            <td> {{ $subcategory->description }} </td>
                             <td>
                                 <a href='{{ url("subcategory/view/" . $subcategory->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
                                 <a href='{{ url("subcategory/form/" . $subcategory->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>

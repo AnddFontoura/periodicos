@@ -12,7 +12,6 @@ class CategoryController extends Controller
     public function validation(Request $request)
     {
         $this->validate($request, [
-            'subCategoryId' => 'required|int',
             'name' => 'required|unique:categories'
         ]);
     }
@@ -26,7 +25,7 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
-        $category =  Category::get();
+        $category = Category::get();
 
         return view('category.index', compact('category'));
     }
@@ -49,16 +48,13 @@ class CategoryController extends Controller
 
         $request = $request->all();
 
-        $subCategories = SubCategory::orderBy('name', 'asc')->get();
-
         $category = Category::create([
-            'subcategory_id' => $request['subCategoryId'],
             'name' => $request['name'],
             'image' => $request['image'] ?? null,
             'description' => $request['description']
         ]);
 
-        return view('admin.category.form', compact('category','subCategories'));
+        return view('admin.category.form', compact('category'));
     }
 
     public function view($id)
@@ -66,17 +62,15 @@ class CategoryController extends Controller
         $category = Category::where('id', $id)
             ->first();
 
-        $subcategory = SubCategory::where('id', $category->subcategory_id)
-            ->first();
-
-        $countCategory = Category::where('subcategory_id', $category->subcategory_id)
+        $countSubCategory = SubCategory::where('category_id', $category->id)
             ->count('id');
 
-        $countArticle = Articles::join('categories','categories.id','=','articles.category_id')
-            ->where('categories.subcategory_id', $subcategory->id)
+        $countArticle = Articles::join('sub_categories','sub_categories.id', '=', 'articles.subcategory_id')
+            ->join('categories', 'categories.id', '=', 'sub_categories.category_id')
+            ->where('categories.id', $category->id)
             ->count('articles.id');
 
-        return view('admin.category.view', compact('category','subcategory', 'countCategory', 'countArticle'));
+        return view('admin.category.view', compact('category', 'countSubCategory', 'countArticle'));
     }
 
     public function update(Request $request, int $id)
@@ -88,11 +82,9 @@ class CategoryController extends Controller
             ->first();
 
         if (empty($checkIfNameIsBeingUsedInAnotherSubCategory)) {
-            $category = Category::where('id', $request['id'])
+            $category = Category::where('id', $id)
                 ->update([
-                    'subcategory_id' => $request['subCategoryId'],
                     'name' => $request['name'],
-                    'image' => $request['image'],
                     'description' => $request['description']
                 ]);
         } else {

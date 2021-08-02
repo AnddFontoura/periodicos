@@ -79,12 +79,18 @@ class ArticleController extends Controller
         return view('admin.article.form', compact('article','categories'));
     }
 
-    public function show(int $id)
+    public function view(int $id)
     {
         $article = Articles::where('id', $id)
             ->first();
 
-        return view('admin.category.view', compact('article'));
+        $subCategory = SubCategory::where('id', $article->subcategory_id)
+            ->first();
+
+        $category = Category::where('id', $subCategory->category_id)
+            ->first();
+
+        return view('admin.article.view', compact('article','subCategory', 'category'));
     }
 
     public function update(Request $request, int $id)

@@ -16,8 +16,9 @@ class CreateSubcategoriesTable extends Migration
         try {
             Schema::create('sub_categories', function (Blueprint $table) {
                 $table->bigIncrements('id');
+                $table->unsignedBigInteger('category_id');
                 $table->string('name', 200);
-                $table->text('description', 1000);
+                $table->text('description');
                 $table->text('image')->nullable(true);
                 $table->timestamps();
                 $table->softDeletes();

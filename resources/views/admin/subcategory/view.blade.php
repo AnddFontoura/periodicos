@@ -15,15 +15,15 @@
         <div class='card-body'>
             <div class="p-5 mb-4 bg-light rounded-3">
                 <div class="container-fluid py-5">
-                    <h1 class="display-5 fw-bold">{{ $subcategory->name }}</h1>
-                    <p class="col-md-8 fs-4">{{ $subcategory->description }}</p>
+                    <h1 class="display-5 fw-bold">{{ $subCategory->name }} - ({{ $subCategory->category->name }})</h1>
+                    <p class="col-md-8 fs-4">{{ $subCategory->description }}</p>
                 </div>
             </div>
 
             <div class="row text-center">
                 <div class="col-md-6">
                     <div class="h-100 p-3 text-white bg-success rounded-3">
-                    <h2>Categorias</h2>
+                    <h2>Subcategorias nessa categoria</h2>
                     <p>{{ $countCategory }}</p>
                     </div>
                 </div>

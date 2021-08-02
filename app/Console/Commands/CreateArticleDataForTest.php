@@ -3,8 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Articles;
-use App\Category;
-use App\SubCategory;
 use Illuminate\Console\Command;
 
 class CreateArticleDataForTest extends Command
@@ -42,28 +40,6 @@ class CreateArticleDataForTest extends Command
     {
         $amount = $this->argument('amount') ?? 1;
 
-        $subCategory = Category::select('id')->get();
-
-        if (count($subCategory) < 50) {
-            for ($i =0; $i < 50; $i++) {
-                Factory(SubCategory::class)->create();
-            }
-        }
-
-        $bar = $this->output->createProgressBar($amount);
-
-        $bar->start();
-
-        for ($i = 0; $i < $amount; $i++) {
-            $subCategory = SubCategory::inRandomOrder()->first();
-
-            Factory(Articles::class)->create([
-                'subcategory_id' => $subCategory->id
-            ]);
-
-            $bar->advance();
-        }
-
-        $bar->finish();
+        Factory(Articles::class, $amount)->create();
     }
 }

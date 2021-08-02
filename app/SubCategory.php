@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SubCategory extends Model
@@ -14,6 +15,7 @@ class SubCategory extends Model
      * @var string[]
      */
     protected $fillable = [
+        'category_id',
         'name',
         'description',
         'image',
@@ -41,4 +43,9 @@ class SubCategory extends Model
     protected $hidden = [
 
     ];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }

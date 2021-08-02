@@ -18,8 +18,7 @@
                     <thead>
                         <tr>
                         <th scope="col" width='10%'>#</th>
-                        <th scope="col" width='30%'>Sub Categoria</th>
-                        <th scope="col" width='30%'>Categoria</th>
+                        <th scope="col" width='60%'>Categoria</th>
                         <th scope="col" width='30%' class='text-right'>Opções</th>
                         </tr>
                     </thead>
@@ -28,7 +27,6 @@
                         @foreach($categories as $category)
                         <tr>
                             <td> {{ $category->id }} </td>
-                            <td> {{ $category->subcategory->name }} </td>
                             <td> {{ $category->name }} </td>
                             <td>
                                 <a href='{{ url("category/view/" . $category->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
