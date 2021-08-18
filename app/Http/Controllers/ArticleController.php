@@ -16,12 +16,13 @@ class ArticleController extends Controller
     protected function validation(Request $request): void
     {
         $this->validate($request, [
+            'subCategoryId' => 'required|int',
             'name' => 'required|max:254',
             'authors' => 'required',
             'resume' => 'required',
             'abstract' => 'required',
             'keywords' => 'required',
-            'fileToUpload' => 'required|max:15000',
+            'fileToUpload' => 'nullable',
         ]);
     }
 
@@ -57,7 +58,7 @@ class ArticleController extends Controller
 
         $request = $request->all();
 
-        $categories = Category::orderBy('name', 'asc')->get();
+        $subCategories = SubCategory::orderBy('name', 'asc')->get();
 
         $article = Articles::create([
             'subcategory_id' => $request['subCategoryId'],
@@ -66,6 +67,7 @@ class ArticleController extends Controller
             'resume' => $request['resume'],
             'abstract' => $request['abstract'],
             'keywords' => $request['keywords'],
+            'path' => 'unknown'
         ]);
 
         if ($request['fileToUpload']) {
@@ -76,7 +78,7 @@ class ArticleController extends Controller
             $article->save();
         }
 
-        return view('admin.article.form', compact('article','categories'));
+        return view('admin.article.form', compact('article','subCategories'));
     }
 
     public function view(int $id)
@@ -111,6 +113,14 @@ class ArticleController extends Controller
                     'abstract' => $request['abstract'],
                     'keywords' => $request['keywords'],
                 ]);
+
+            if ($request['fileToUpload']) {
+                $fileName = $article->id . Str::slug($article->name) . Carbon::now()->timestamp;
+                Storage::disk('articles')->put($fileName, $request['fileToUpload']);
+
+                $article->path = $fileName;
+                $article->save();
+            }
         } else {
             return back()->withErrors(['name' => 'Name already being used in another article']);
         }

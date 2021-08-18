@@ -11,6 +11,7 @@ class Articles extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'subcategory_id',
         'name',
         'path',
         'authors',

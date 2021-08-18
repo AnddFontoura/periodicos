@@ -57,8 +57,8 @@ return [
 
         'articles' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage/articles',
+            'root' => storage_path('app/public') . '/articles',
+            'url' => env('APP_URL'). '/storage',
             'visibility' => 'public',
         ],
 
