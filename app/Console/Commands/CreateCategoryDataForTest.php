@@ -13,7 +13,7 @@ class CreateCategoryDataForTest extends Command
      *
      * @var string
      */
-    protected $signature = 'command:create-fake-category-data';
+    protected $signature = 'command:create-fake-category-data {amount}';
 
     /**
      * The console command description.
@@ -39,6 +39,8 @@ class CreateCategoryDataForTest extends Command
      */
     public function handle()
     {
-        Factory(Category::class)->create();
+        $amount = $this->argument('amount') ?? 1;
+
+        Factory(Category::class, $amount)->create();
     }
 }

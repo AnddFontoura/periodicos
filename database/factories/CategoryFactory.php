@@ -8,10 +8,7 @@ use App\SubCategory;
 use Faker\Generator as Faker;
 
 $factory->define(Category::class, function (Faker $faker) {
-    $subCategory = Factory(SubCategory::class)->create();
-
     return [
-        'subcategory_id' => $subCategory->id,
         'name' => $faker->unique()->name(150),
         'description' => $faker->text(150),
         'image' => $faker->imageUrl(),

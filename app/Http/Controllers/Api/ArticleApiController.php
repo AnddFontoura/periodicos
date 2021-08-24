@@ -17,17 +17,17 @@ class ArticleApiController extends Controller
             'articleId' => 'required|int'
         ]);
 
-        $subCategory = Articles::where('id', $request->post('articleId'))->first();
+        $article = Articles::where('id', $request->post('articleId'))->first();
 
-        if (empty($subCategory)) {
+        if (empty($article)) {
             throw new Exception (
                 'Article not founded or already deleted',
                 Response::HTTP_BAD_REQUEST
             );
         }
 
-        $subCategory->delete();
-        $subCategory->save();
+        $article->delete();
+        $article->save();
 
         return response()->json("Article deleted with success",Response::HTTP_ACCEPTED);
     }
