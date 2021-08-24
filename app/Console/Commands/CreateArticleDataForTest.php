@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Articles;
+use App\Article;
 use Illuminate\Console\Command;
 
 class CreateArticleDataForTest extends Command
@@ -40,6 +40,6 @@ class CreateArticleDataForTest extends Command
     {
         $amount = $this->argument('amount') ?? 1;
 
-        Factory(Articles::class, $amount)->create();
+        Factory(Article::class, $amount)->create();
     }
 }

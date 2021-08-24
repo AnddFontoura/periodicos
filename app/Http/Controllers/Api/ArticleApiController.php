@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Articles;
+use App\Article;
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -17,7 +17,7 @@ class ArticleApiController extends Controller
             'articleId' => 'required|int'
         ]);
 
-        $article = Articles::where('id', $request->post('articleId'))->first();
+        $article = Article::where('id', $request->post('articleId'))->first();
 
         if (empty($article)) {
             throw new Exception (

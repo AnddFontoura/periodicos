@@ -2,16 +2,16 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Articles;
+use App\Article;
 use App\SubCategory;
 use Faker\Generator as Faker;
 
-$factory->define(Articles::class, function (Faker $faker) {
+$factory->define(Article::class, function (Faker $faker) {
 
-    $subCategoryId = Factory(SubCategory::class)->create()->id;
+    $subCategory = Factory(SubCategory::class)->create();
 
     return [
-        'subcategory_id' => $subCategoryId,
+        'subcategory_id' => $subCategory->id,
         'name' => $faker->name,
         'path' => $faker->imageUrl(),
         'authors' => $faker->name . ', ' . $faker->name,

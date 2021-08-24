@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Articles;
+use App\Article;
 use App\Category;
 use App\SubCategory;
 use Illuminate\Http\Request;
@@ -65,7 +65,7 @@ class CategoryController extends Controller
         $countSubCategory = SubCategory::where('category_id', $category->id)
             ->count('id');
 
-        $countArticle = Articles::join('sub_categories','sub_categories.id', '=', 'articles.subcategory_id')
+        $countArticle = Article::join('sub_categories','sub_categories.id', '=', 'articles.subcategory_id')
             ->join('categories', 'categories.id', '=', 'sub_categories.category_id')
             ->where('categories.id', $category->id)
             ->count('articles.id');

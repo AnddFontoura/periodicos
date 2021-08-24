@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Articles;
+use App\Article;
 use App\Category;
 use App\SubCategory;
 use Carbon\Carbon;
@@ -28,14 +28,14 @@ class ArticleController extends Controller
 
     public function index()
     {
-        $articles = Articles::paginate(20);
+        $articles = Article::paginate(20);
 
         return view('admin.article.index', compact('articles'));
     }
 
     public function list(Request $request)
     {
-        $articles = Articles::paginate(20);
+        $articles = Article::paginate(20);
 
         return view('admin.article.index', compact('articles'));
     }
@@ -46,7 +46,7 @@ class ArticleController extends Controller
         $subCategories = SubCategory::orderBy('name', 'asc')->get();
 
         if ($id) {
-            $article = Articles::where('id', $id)->first();
+            $article = Article::where('id', $id)->first();
         }
 
         return view('admin.article.form', compact('article', 'subCategories'));
@@ -60,7 +60,7 @@ class ArticleController extends Controller
 
         $subCategories = SubCategory::orderBy('name', 'asc')->get();
 
-        $article = Articles::create([
+        $article = Article::create([
             'subcategory_id' => $request['subCategoryId'],
             'name' => $request['name'],
             'authors' => $request['authors'],
@@ -83,7 +83,7 @@ class ArticleController extends Controller
 
     public function view(int $id)
     {
-        $article = Articles::where('id', $id)
+        $article = Article::where('id', $id)
             ->first();
 
         $subCategory = SubCategory::where('id', $article->subcategory_id)
@@ -99,7 +99,7 @@ class ArticleController extends Controller
     {
         $request = $request->all();
 
-        $checkIfNameIsBeingUsedInAnotherArticle = Articles::where('name', $request['name'])
+        $checkIfNameIsBeingUsedInAnotherArticle = Article::where('name', $request['name'])
             ->where('id', '<>', $id)
             ->first();
 
