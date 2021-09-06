@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Article;
 use App\Http\Controllers\Controller;
+use App\Page;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Response;
 
-class ArticleApiController extends Controller
+class PageApiController extends Controller
 {
     public function delete(Request $request): JsonResponse
     {
@@ -17,18 +17,18 @@ class ArticleApiController extends Controller
             'articleId' => 'required|int'
         ]);
 
-        $article = Article::where('id', $request->post('articleId'))->first();
+        $page = Page::where('id', $request->post('pageId'))->first();
 
-        if (empty($article)) {
+        if (empty($page)) {
             throw new Exception (
-                'Article not founded or already deleted',
+                'Page not founded or already deleted',
                 Response::HTTP_BAD_REQUEST
             );
         }
 
-        $article->delete();
-        $article->save();
+        $page->delete();
+        $page->save();
 
-        return response()->json("Article deleted with success",Response::HTTP_ACCEPTED);
+        return response()->json("Page deleted with success",Response::HTTP_ACCEPTED);
     }
 }

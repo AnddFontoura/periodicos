@@ -77,11 +77,11 @@ class CategoryController extends Controller
     {
         $request = $request->all();
 
-        $checkIfNameIsBeingUsedInAnotherSubCategory = SubCategory::where('name', $request['name'])
+        $checkIfNameIsBeingUsedInAnotherCategory = Category::where('name', $request['name'])
             ->where('id', '<>', $id)
             ->first();
 
-        if (empty($checkIfNameIsBeingUsedInAnotherSubCategory)) {
+        if (empty($checkIfNameIsBeingUsedInAnotherCategory)) {
             $category = Category::where('id', $id)
                 ->update([
                     'name' => $request['name'],
