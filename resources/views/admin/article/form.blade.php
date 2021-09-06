@@ -8,7 +8,7 @@
             <div class='card-header'>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('artcile') }}">Artigo</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('article') }}">Artigo</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Novo Artigo</li>
                     </ol>
                 </nav>
