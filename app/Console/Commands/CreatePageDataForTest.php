@@ -2,24 +2,24 @@
 
 namespace App\Console\Commands;
 
-use App\Article;
+use App\Page;
 use Illuminate\Console\Command;
 
-class CreateArticleDataForTest extends Command
+class CreatePageDataForTest extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:create-fake-article-data {amount}';
+    protected $signature = 'command:create-fake-page-data {amount}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create fake data for article';
+    protected $description = 'Command description';
 
     /**
      * Create a new command instance.
@@ -45,7 +45,7 @@ class CreateArticleDataForTest extends Command
         $bar->start();
 
         for ($i = 0; $i < $amount; $i++) {
-            Factory(Article::class)->create();
+            Factory(Page::class)->create();
 
             $bar->advance();
         }

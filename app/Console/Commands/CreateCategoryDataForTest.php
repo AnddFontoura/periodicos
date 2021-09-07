@@ -41,6 +41,16 @@ class CreateCategoryDataForTest extends Command
     {
         $amount = $this->argument('amount') ?? 1;
 
-        Factory(Category::class, $amount)->create();
+        $bar = $this->output->createProgressBar($amount);
+
+        $bar->start();
+
+        for ($i = 0; $i < $amount; $i++) {
+            Factory(Category::class)->create();
+
+            $bar->advance();
+        }
+
+        $bar->finish();
     }
 }

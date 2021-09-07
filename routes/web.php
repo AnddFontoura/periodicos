@@ -47,11 +47,11 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix' => 'page'], function() {
-        Route::match(['get','post'], '/', 'SubCategoryController@list');
-        Route::get('form', 'SubCategoryController@create');
-        Route::get('form/{id}','SubCategoryController@edit');
-        Route::post('save', 'SubCategoryController@store');
-        Route::post('save/{id}', 'SubCategoryController@update');
+        Route::match(['get','post'], '/', 'PageController@list');
+        Route::get('form', 'PageController@create');
+        Route::get('form/{id}','PageController@edit');
+        Route::post('save', 'PageController@store');
+        Route::post('save/{id}', 'PageController@update');
     });
 });
 

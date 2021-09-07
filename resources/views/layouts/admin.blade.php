@@ -59,6 +59,15 @@
                             <li><a class="dropdown-item" href="{{ url('article/deleted') }}">Deletados</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Página</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ url('page') }}">Listar</a></li>
+                            <li><a class="dropdown-item" href="{{ url('page/form') }}">Nova Página</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url('page/deleted') }}">Deletados</a></li>
+                        </ul>
+                    </li>
                 @endauth
                 <!-- Authentication Links -->
                 @guest
