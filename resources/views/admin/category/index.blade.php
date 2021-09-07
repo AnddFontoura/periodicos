@@ -28,10 +28,10 @@
                         <tr>
                             <td> {{ $category->id }} </td>
                             <td> {{ $category->name }} </td>
-                            <td>
+                            <td class='text-end'>
                                 <a href='{{ url("category/view/" . $category->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
                                 <a href='{{ url("category/form/" . $category->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
-                                <div class='btn btn-danger fas fa-trash-alt fa-lg text-end deleteCategory' data-id='{{ $category->id }}'></div>
+                                <div class='btn btn-danger fas fa-trash-alt fa-lg deleteCategory' data-id='{{ $category->id }}'></div>
                             </td>
                         </tr>
                         @endforeach
