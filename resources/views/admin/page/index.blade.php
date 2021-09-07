@@ -19,19 +19,19 @@
                         <tr>
                         <th scope="col" width='10%'>#</th>
                         <th scope="col" width='45%'>Page</th>
-                        <th scope="col" width='45%' class='text-right'>Opções</th>
+                        <th scope="col" width='45%' class='text-end'>Opções</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @foreach($pages as $page)
                         <tr>
-                            <td> {{ $article->id }} </td>
-                            <td> {{ $article->name }} </td>
-                            <td>
-                                <a href='{{ url("page/view/" . $article->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
-                                <a href='{{ url("page/form/" . $article->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
-                                <div class='btn btn-danger fas fa-trash-alt fa-lg deletePage' data-id='{{ $page->id }}'></div>
+                            <td> {{ $page->id }} </td>
+                            <td> {{ $page->name }} </td>
+                            <td class='text-end' >
+                                <a href='{{ url("page/view/" . $page->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
+                                <a href='{{ url("page/form/" . $page->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
+                                <div class='btn btn-danger fas fa-trash-alt fa-lg deletePage ' data-id='{{ $page->id }}'></div>
                             </td>
                         </tr>
                         @endforeach

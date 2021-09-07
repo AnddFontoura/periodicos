@@ -20,7 +20,7 @@
                         <th scope="col" width='10%'>#</th>
                         <th scope="col" width='30%'>Categoria</th>
                         <th scope="col" width='30%'>Sub Categoria</th>
-                        <th scope="col" width='20%' class='text-right'>Opções</th>
+                        <th scope="col" width='20%' class='text-end'>Opções</th>
                         </tr>
                     </thead>
 
@@ -33,7 +33,7 @@
                             <td>
                                 <a href='{{ url("subcategory/view/" . $subcategory->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
                                 <a href='{{ url("subcategory/form/" . $subcategory->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
-                                <div class='btn btn-danger fas fa-trash-alt fa-lg deleteCategory' data-id='{{ $subcategory->id }}'></div>
+                                <div class='btn btn-danger fas fa-trash-alt fa-lg text-end deleteCategory' data-id='{{ $subcategory->id }}'></div>
                             </td>
                         </tr>
                         @endforeach
