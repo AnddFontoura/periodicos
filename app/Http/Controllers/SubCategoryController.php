@@ -19,9 +19,31 @@ class SubCategoryController extends Controller
 
     public function list(Request $request)
     {
-        $subcategories = SubCategory::paginate(20);
+        $categories = Category::select('id', 'name')
+            ->orderBy('name', 'asc')
+            ->get();
 
-        return view('admin.subcategory.index', compact('subcategories'));
+        $categoryId = $request->get('categoryId');
+        $subCategoryId = $request->get('subCategoryId');
+        $subCategoryName = $request->get('subCategoryName');
+
+        $subcategories = SubCategory::query();
+
+        if ($categoryId) {
+            $subcategories = $subcategories->where('category_id', '=', $categoryId);
+        }
+
+        if ($subCategoryId) {
+            $subcategories = $subcategories->where('id', '=', $subCategoryId);
+        }
+
+        if ($subCategoryName) {
+            $subcategories = $subcategories->where('name', 'like', "%" . $subCategoryName . "%");
+        }
+
+        $subcategories = $subcategories->paginate(20);
+
+        return view('admin.subcategory.index', compact('subcategories', 'categories'));
     }
 
     public function index(Request $request)

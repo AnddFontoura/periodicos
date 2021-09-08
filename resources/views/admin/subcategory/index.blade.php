@@ -2,7 +2,54 @@
 
 @section('content')
 <div class="container">
-    <div class='card'>
+
+    <form method="GET" action="{{ url('subcategory') }}">
+        <div class="card">
+            <div class="card-header">
+                Filtrar
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-floating mb-3">
+                            <select class="form-control select2" name="categoryId" id="floatingCategoryName" placeholder="Nome da Categoria">
+                                @if(count($categories) > 0)
+                                    <option value="0"> Nenhuma Categoria Especifica </option>
+
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}" @if(isset($subcategory) && $category->subcategory_id == $subCategory->id) selected @endif> {{ $category->name }} </option>
+                                    @endforeach
+                                @else
+                                    <option selected>Nenhuma categoria cadastrada, antes de continuar você deve cadastra ao menos uma</option>
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="floatingSubCategoryId" placeholder="Id da Sub Categoria" value='@if(Request::get('subCategoryId')){{ Request::get('subCategoryId') }}@endif' name='subCategoryId'>
+                            <label for="floatingCategoryName">Id da Sub Categoria </label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingSubCategoryName" placeholder="Nome da Sub Categoria" value='@if(Request::get('subCategoryName')){{ Request::get('subCategoryName') }}@endif' name='subCategoryName'>
+                            <label for="floatingCategoryName">Nome da Sub Categoria </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-header text-end">
+                <button class="btn btn-success" type="submit">Filtrar</button>
+            </div>
+        </div>
+    </form>
+
+    <div class='card mt-3'>
         <div class='card-header'>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -50,7 +97,7 @@
 
         @if($subcategories->links())
         <div class='card-footer'>
-            {{ $subcategories->links() }}
+            {{ $subcategories->appends(request()->query())->links() }}
         </div>
         @endif
     </div>
