@@ -49,9 +49,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'page'], function() {
         Route::match(['get','post'], '/', 'PageController@list');
         Route::get('form', 'PageController@create');
-        Route::get('form/{id}','PageController@edit');
+        Route::get('form/{id}','PageController@create');
         Route::post('save', 'PageController@store');
         Route::post('save/{id}', 'PageController@update');
+        Route::get('view/{id}', 'PageController@view');
+        Route::get('delete/{id}', 'PageController@delete');
     });
 });
 

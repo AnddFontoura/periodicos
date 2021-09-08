@@ -18,7 +18,20 @@ class CategoryController extends Controller
 
     public function list(Request $request)
     {
-        $categories = Category::paginate(20);
+        $categoryId = $request->get('categoryId');
+        $categoryName = $request->get('categoryName');
+
+        $categories = Category::query();
+
+        if ($categoryId) {
+            $categories = $categories->where('id', '=', $categoryId);
+        }
+
+        if ($categoryName) {
+            $categories = $categories->where('name', 'like', "%" . $categoryName . "%");
+        }
+
+        $categories = $categories->paginate(20);
 
         return view('admin.category.index', compact('categories'));
     }

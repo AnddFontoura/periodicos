@@ -2,7 +2,38 @@
 
 @section('content')
 <div class="container">
-    <div class='card'>
+
+    <form method="GET" action="{{ url('category') }}">
+        <div class="card">
+            <div class="card-header">
+                Filtrar
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="floatingSubCategoryId" placeholder="Id da Categoria" value='@if(Request::get('categoryId')){{ Request::get('categoryId') }}@endif' name='categoryId'>
+                            <label for="floatingCategoryName">Id da Categoria </label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingSubCategoryName" placeholder="Nome da Categoria" value='@if(Request::get('categoryName')){{ Request::get('categoryName') }}@endif' name='categoryName'>
+                            <label for="floatingCategoryName">Nome da Categoria </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-header text-end">
+                <button class="btn btn-success" type="submit">Filtrar</button>
+            </div>
+        </div>
+    </form>
+
+    <div class='card mt-3'>
         <div class='card-header'>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -48,7 +79,7 @@
 
         @if($categories->links())
         <div class='card-footer'>
-            {{ $categories->links() }}
+            {{ $categories->appends(request()->query())->links() }}
         </div>
         @endif
     </div>
