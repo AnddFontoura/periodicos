@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\Services\SubCategoryService;
 use App\SubCategory;
 use Illuminate\Http\Request;
 
@@ -23,24 +24,7 @@ class SubCategoryController extends Controller
             ->orderBy('name', 'asc')
             ->get();
 
-        $categoryId = $request->get('categoryId');
-        $subCategoryId = $request->get('subCategoryId');
-        $subCategoryName = $request->get('subCategoryName');
-
-        $subcategories = SubCategory::query();
-
-        if ($categoryId) {
-            $subcategories = $subcategories->where('category_id', '=', $categoryId);
-        }
-
-        if ($subCategoryId) {
-            $subcategories = $subcategories->where('id', '=', $subCategoryId);
-        }
-
-        if ($subCategoryName) {
-            $subcategories = $subcategories->where('name', 'like', "%" . $subCategoryName . "%");
-        }
-
+        $subcategories = SubCategoryService::filterSubCategory($request);
         $subcategories = $subcategories->paginate(20);
 
         return view('admin.subcategory.index', compact('subcategories', 'categories'));

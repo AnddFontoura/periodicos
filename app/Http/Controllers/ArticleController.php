@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\Services\ArticlesService;
 use App\SubCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -35,7 +36,9 @@ class ArticleController extends Controller
 
     public function list(Request $request)
     {
-        $articles = Article::paginate(20);
+
+        $articles = ArticlesService::filterArticles($request);
+        $articles = $articles->paginate(20);
 
         return view('admin.article.index', compact('articles'));
     }

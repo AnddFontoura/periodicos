@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\Services\CategoryService;
+use App\Services\SubCategoryService;
 use App\SubCategory;
 use Illuminate\Http\Request;
 
@@ -18,19 +20,7 @@ class CategoryController extends Controller
 
     public function list(Request $request)
     {
-        $categoryId = $request->get('categoryId');
-        $categoryName = $request->get('categoryName');
-
-        $categories = Category::query();
-
-        if ($categoryId) {
-            $categories = $categories->where('id', '=', $categoryId);
-        }
-
-        if ($categoryName) {
-            $categories = $categories->where('name', 'like', "%" . $categoryName . "%");
-        }
-
+        $categories = CategoryService::filterCategory($request);
         $categories = $categories->paginate(20);
 
         return view('admin.category.index', compact('categories'));
@@ -46,7 +36,7 @@ class CategoryController extends Controller
     public function create(?int $id = null)
     {
         $category = null;
-        $subCategories = SubCategory::orderBy('name', 'asc')->get();
+        $subCategories = SubCategoryService::getSubCategoryForSelect();
 
         if ($id) {
             $category = Category::where('id', $id)->first();
