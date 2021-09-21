@@ -20,7 +20,7 @@ php artisan key:generate
 
 php artisan migrate
 
-O primeiro usuario pode ser criado pelo command new-user {login} {password}
+O primeiro usuario pode ser criado pelo command create-user {name} {email} {password}
 
 #Features
 Existe exemplos de manipulação de arquivos
