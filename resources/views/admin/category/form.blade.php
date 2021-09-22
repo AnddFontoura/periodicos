@@ -32,7 +32,7 @@
             </div>
 
             <div class='card-footer'>
-                <button type="submit" class='btn bnt-lg btn-success'> @if(isset($category)) Atualizar @else Cadastrar @endif nova categoria </button>
+                <button type="submit" class='btn bnt-lg btn-success'> @if(isset($category)) Atualizar @else Cadastrar @endif categoria </button>
             </div>
         </div>
     </form>

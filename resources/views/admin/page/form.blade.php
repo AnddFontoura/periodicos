@@ -28,12 +28,12 @@
                 @enderror
                 <div class="mb-3">
                     <label class="form-label">Description</label>
-                    <textarea id="ckeditor-description" name="description">@if(isset($page)){{ $page->resume }}@endif</textarea>
+                    <textarea id="ckeditor-description" name="description">@if(isset($page)){{ $page->description }}@endif</textarea>
                 </div>
             </div>
 
             <div class='card-footer'>
-                <button type="submit" class='btn bnt-lg btn-success'> @if(isset($page)) Atualizar @else Cadastrar @endif nova página </button>
+                <button type="submit" class='btn bnt-lg btn-success'> @if(isset($page)) Atualizar @else Cadastrar @endif página </button>
             </div>
         </div>
     </form>
@@ -42,8 +42,6 @@
 
 @section('js')
     <script>
-        CKEDITOR.replace('ckeditor-author');
-        CKEDITOR.replace('ckeditor-resume');
-        CKEDITOR.replace('ckeditor-abstract');
+        CKEDITOR.replace('ckeditor-description');
     </script>
 @endsection

@@ -81,7 +81,7 @@
             </div>
 
             <div class='card-footer'>
-                <button type="submit" class='btn bnt-lg btn-success'> @if(isset($article)) Atualizar @else Cadastrar @endif novo artigo </button>
+                <button type="submit" class='btn bnt-lg btn-success'> @if(isset($article)) Atualizar @else Cadastrar @endif artigo </button>
             </div>
         </div>
     </form>

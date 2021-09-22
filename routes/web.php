@@ -13,6 +13,10 @@
 
 Auth::routes();
 
+Route::get('/register', function() {
+    return view('layouts.error');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {

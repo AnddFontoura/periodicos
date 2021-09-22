@@ -44,7 +44,7 @@
             </div>
 
             <div class='card-footer'>
-                <button type="submit" class='btn bnt-lg btn-success'> @if(isset($subcategory)) Atualizar @else Cadastrar @endif nova Subcategoria </button>
+                <button type="submit" class='btn bnt-lg btn-success'> @if(isset($subcategory)) Atualizar @else Cadastrar @endif Subcategoria </button>
             </div>
         </div>
     </form>
