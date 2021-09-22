@@ -12,6 +12,7 @@ class Page extends Model
     protected $fillable = [
         'name',
         'description',
+        'home_page',
     ];
 
     protected $dates = [

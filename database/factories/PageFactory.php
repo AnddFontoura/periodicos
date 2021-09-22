@@ -9,5 +9,6 @@ $factory->define(Page::class, function (Faker $faker) {
     return [
         'name' => $faker->unique()->name,
         'description' => $faker->text(rand(150,3000)),
+        'home_page' => rand(0,1)
     ];
 });

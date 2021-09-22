@@ -18,6 +18,7 @@ class CreatePagesTable extends Migration
                 $table->bigIncrements('id');
                 $table->string('name',100);
                 $table->text('description');
+                $table->boolean('home_page')->default(0);
                 $table->timestamps();
                 $table->softDeletes();
             });

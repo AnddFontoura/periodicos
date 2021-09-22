@@ -17,9 +17,11 @@ Route::get('/register', function() {
     return view('layouts.error');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'SiteController@index');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+
     Route::group(['prefix' => 'subcategory'], function() {
         Route::match(['get','post'], '/', 'SubCategoryController@list');
         Route::get('form', 'SubCategoryController@create');
