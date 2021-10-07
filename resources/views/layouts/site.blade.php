@@ -62,7 +62,7 @@
             <ul class="list-group">
                 @if(isset($categoryForMenu) && count($categoryForMenu) > 0)
                     @foreach($categoryForMenu as $categoryMenu)
-                        <a href="{{ url('category/' . $categoryMenu->id) }}"<li class="list-group-item"> {{ $categoryMenu->name }}</li> </a>
+                        <a href="{{ url('category/' . $categoryMenu->id) }}"> <li class="list-group-item"> {{ $categoryMenu->name }}</li> </a>
                     @endforeach
                 @endif
             </ul>

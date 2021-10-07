@@ -18,6 +18,9 @@ Route::get('/register', function() {
 });
 
 Route::get('/', 'SiteController@index');
+Route::get('category/{id}', 'SiteController@subcategoryList');
+Route::get('subcategory/{id}', 'SiteController@articleList');
+Route::get('article/{id}', 'SiteController@articleView');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
