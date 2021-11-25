@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form action='{{ url("article/save") }}@if(isset($article))/{{ $article->id }}@endif' method='POST'>
+    <form action='{{ url("article/save") }}@if(isset($article))/{{ $article->id }}@endif' method='POST' enctype="multipart/form-data">
         @csrf
         <div class='card'>
             <div class='card-header'>
@@ -35,7 +35,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingArticleName" placeholder="Nome do artigo" value='@if(isset($article)){{ $article->name }}@endif' name='name'>
+                    <input type="text" class="form-control" id="floatingArticleName" placeholder="Nome do artigo" value="@if(isset($article)){{ $article->name }}@endif {{ old('name') }}" name='name'>
                     <label for="floatingArticleName">Nome do artigo </label>
                 </div>
 
@@ -44,7 +44,7 @@
                 @enderror
                 <div class="mb-3">
                     <label class="form-label">Autores</label>
-                    <textarea id="ckeditor-author" name="authors">@if(isset($article)){{ $article->authors }}@endif</textarea>
+                    <textarea id="ckeditor-author" name="authors">@if(isset($article)){{ $article->authors }}@endif  {{ old('authors') }}</textarea>
                 </div>
 
                 @error('name')
@@ -52,7 +52,7 @@
                 @enderror
                 <div class="mb-3">
                     <label class="form-label">Resumo</label>
-                    <textarea id="ckeditor-resume" name="resume">@if(isset($article)){{ $article->resume }}@endif</textarea>
+                    <textarea id="ckeditor-resume" name="resume">@if(isset($article)){{ $article->resume }}@endif  {{ old('resume') }}</textarea>
                 </div>
 
                 @error('abstract')
@@ -60,7 +60,7 @@
                 @enderror
                 <div class="mb-3">
                     <label class="form-label">Abstract</label>
-                    <textarea id="ckeditor-abstract" name="abstract">@if(isset($article)){{ $article->abstract }}@endif</textarea>
+                    <textarea id="ckeditor-abstract" name="abstract">@if(isset($article)){{ $article->abstract }}@endif  {{ old('abstract') }}</textarea>
                 </div>
 
                 @error('keywords')
@@ -68,7 +68,7 @@
                 @enderror
                 <div class="mb-3">
                     <label class="form-label">Palavras-chaves</label>
-                    <textarea class="form-control" name="keywords">@if(isset($article)){{ $article->keywords }}@endif</textarea>
+                    <textarea class="form-control" name="keywords">@if(isset($article)){{ $article->keywords }}@endif  {{ old('keywords') }}</textarea>
                 </div>
 
                 @error('fileToUpload')

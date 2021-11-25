@@ -10,7 +10,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 
 class ArticleController extends Controller
 {
@@ -23,7 +22,7 @@ class ArticleController extends Controller
             'resume' => 'required',
             'abstract' => 'required',
             'keywords' => 'required',
-            'fileToUpload' => 'nullable',
+            'fileToUpload' => 'nullable|mimes:pdf',
         ]);
     }
 
@@ -59,23 +58,20 @@ class ArticleController extends Controller
     {
         $this->validation($request);
 
-        $request = $request->all();
-
         $subCategories = SubCategory::orderBy('name', 'asc')->get();
 
         $article = Article::create([
-            'subcategory_id' => $request['subCategoryId'],
-            'name' => $request['name'],
-            'authors' => $request['authors'],
-            'resume' => $request['resume'],
-            'abstract' => $request['abstract'],
-            'keywords' => $request['keywords'],
+            'subcategory_id' => $request->post('subCategoryId'),
+            'name' => $request->post('name'),
+            'authors' => $request->post('authors'),
+            'resume' => $request->post('resume'),
+            'abstract' => $request->post('abstract'),
+            'keywords' => $request->post('keywords'),
             'path' => 'unknown'
         ]);
 
-        if ($request['fileToUpload']) {
-            $fileName = $article->id . Str::slug($article->name) . Carbon::now()->timestamp;
-            Storage::disk('articles')->put($fileName, $request['fileToUpload']);
+        if ($request->file('fileToUpload')) {
+            $fileName = $request->file('fileToUpload')->store('public/articles');
 
             $article->path = $fileName;
             $article->save();
