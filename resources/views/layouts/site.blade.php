@@ -32,7 +32,12 @@
     <header>
         <div class="row">
             <div class="col-12 background-blue" style="height: 200px;">
-                <p> área da imagem do topo </p>
+                <div class="row">
+                    <div class="col-8 offset-2">
+                        <h1 class="mt-3"> BIBLIOTECA DE ARTIGOS CIENTÍFICOS </h1>
+                        <p> Seja bem vindo ao acervo de artigos da <b> Fontoura Editora </b> </p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -56,7 +61,7 @@
             @yield('content')
         </div>
 
-        <div class="col-2">
+        <div class="col-sm-12 col-lg-4 col-md-4">
             <h3> Publicações </h3>
 
             <ul class="list-group">

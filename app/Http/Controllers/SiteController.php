@@ -46,9 +46,10 @@ class SiteController extends Controller
         $pageForMenu = $this->pageForMenu;
         $categoryForMenu = $this->categoryForMenu;
 
-        $articles = Article::where('subcategory_id', $subCategoryId)->get();
+        $subCategory = SubCategory::where('id', $subCategoryId)->first();
+        $articles = Article::where('subcategory_id', $subCategoryId)->paginate(20);
 
-        return view('site.articlesList', compact('articles', 'pageForMenu', 'categoryForMenu'));
+        return view('site.articlesList', compact('subCategory', 'articles', 'pageForMenu', 'categoryForMenu'));
     }
 
     public function articleView(int $articleId)

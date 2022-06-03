@@ -13,20 +13,15 @@ class CreateSubcategoriesTable extends Migration
      */
     public function up()
     {
-        try {
-            Schema::create('sub_categories', function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->unsignedBigInteger('category_id');
-                $table->string('name', 200);
-                $table->text('description');
-                $table->text('image')->nullable(true);
-                $table->timestamps();
-                $table->softDeletes();
-            });
-        } catch (Exception $e) {
-            Schema::dropIfExists('sub_categories');
-            dd($e->getMessage());
-        }
+        Schema::create('sub_categories', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('category_id');
+            $table->string('name', 200);
+            $table->text('description');
+            $table->text('image')->nullable(true);
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**

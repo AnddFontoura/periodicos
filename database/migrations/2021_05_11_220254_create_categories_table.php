@@ -13,19 +13,14 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        try {
-            Schema::create('categories', function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->string('name',200);
-                $table->text('description');
-                $table->text('image')->nullable(true);
-                $table->timestamps();
-                $table->softDeletes();
-            });
-        } catch (Exception $e) {
-            Schema::dropIfExists('categories');
-            dd($e->getMessage());
-        }
+        Schema::create('categories', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name',200);
+            $table->text('description');
+            $table->text('image')->nullable(true);
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**
