@@ -20,14 +20,18 @@ class SiteController extends Controller
        $this->categoryForMenu = Category::orderBy('name', 'desc')->get();
     }
 
-    public function index()
+    public function index(?int $pageId = null)
     {
         $pageForMenu = $this->pageForMenu;
         $categoryForMenu = $this->categoryForMenu;
 
-        $homePage = Page::where('home_page', true)->first();
+        if($pageId) {
+            $page = Page::where('id', $pageId)->first();
+        } else {
+            $page = Page::where('home_page', true)->first();
+        }
 
-        return view('site.home', compact('homePage', 'pageForMenu', 'categoryForMenu'));
+        return view('site.home', compact('page', 'pageForMenu', 'categoryForMenu'));
     }
 
     public function subCategoryList(int $categoryId)

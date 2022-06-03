@@ -36,13 +36,12 @@ class CategoryController extends Controller
     public function create(?int $id = null)
     {
         $category = null;
-        $subCategories = SubCategoryService::getSubCategoryForSelect();
 
         if ($id) {
             $category = Category::where('id', $id)->first();
         }
 
-        return view('admin.category.form', compact('category','subCategories'));
+        return view('admin.category.form', compact('category'));
     }
 
     public function store(Request $request)

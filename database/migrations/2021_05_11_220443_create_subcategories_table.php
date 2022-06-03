@@ -21,6 +21,8 @@ class CreateSubcategoriesTable extends Migration
             $table->text('image')->nullable(true);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

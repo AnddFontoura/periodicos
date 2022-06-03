@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="container">
-    <form action='{{ url("page/save") }}@if(isset($page))/{{ $page->id }}@endif' method='POST'>
+    <form action='{{ url("admin/page/save") }}@if(isset($page))/{{ $page->id }}@endif' method='POST'>
         @csrf
         <div class='card'>
             <div class='card-header'>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('page') }}">Artigo</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/page') }}">Artigo</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Novo Artigo</li>
                     </ol>
                 </nav>

@@ -31,8 +31,8 @@
                             <td> {{ $article->subcategory->name }} </td>
                             <td> {{ $article->name }} </td>
                             <td class='text-end'>
-                                <a href='{{ url("article/view/" . $article->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
-                                <a href='{{ url("article/form/" . $article->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
+                                <a href='{{ url("admin/article/view/" . $article->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
+                                <a href='{{ url("admin/article/form/" . $article->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
                                 <div class='btn btn-danger fas fa-trash-alt fa-lg deleteCategory' data-id='{{ $article->id }}'></div>
                             </td>
                         </tr>
@@ -44,7 +44,7 @@
                     Não existem Artigos cadastrados. Você pode começar a cadastrar agora.
                 </div>
 
-                <a href='{{ url("article/form") }}' class='btn btn-lg btn-success'> Cadastrar Artigo </a>
+                <a href='{{ url("admin/article/form") }}' class='btn btn-lg btn-success'> Cadastrar Artigo </a>
             @endif
         </div>
 

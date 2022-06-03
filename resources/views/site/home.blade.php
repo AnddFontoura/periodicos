@@ -2,11 +2,11 @@
 
 @section('content')
 
-    @if(isset($homePage))
+    @if(isset($page))
 
-        <h3 class="border-bottom"> {{$homePage->name }}</h3>
+        <h3 class="border-bottom"> {{$page->name }}</h3>
 
-        {!! $homePage->description !!}
+        {!! $page->description !!}
     @endif
 
 @endsection

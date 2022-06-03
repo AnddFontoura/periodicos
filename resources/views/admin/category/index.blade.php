@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 
-    <form method="GET" action="{{ url('category') }}">
+    <form method="GET" action="{{ url('admin/category') }}">
         <div class="card">
             <div class="card-header">
                 Filtrar
@@ -60,8 +60,8 @@
                             <td> {{ $category->id }} </td>
                             <td> {{ $category->name }} </td>
                             <td class='text-end'>
-                                <a href='{{ url("category/view/" . $category->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
-                                <a href='{{ url("category/form/" . $category->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
+                                <a href='{{ url("admin/category/view/" . $category->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
+                                <a href='{{ url("admin/category/form/" . $category->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
                                 <div class='btn btn-danger fas fa-trash-alt fa-lg deleteCategory' data-id='{{ $category->id }}'></div>
                             </td>
                         </tr>

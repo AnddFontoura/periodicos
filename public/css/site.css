@@ -5,3 +5,8 @@
     background-color: #1E5799;
     color: #cccccc;
 }
+
+.nav-item:hover {
+    border-radius: 5px;
+    background-color: #00000038;
+}

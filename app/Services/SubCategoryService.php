@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\SubCategory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class SubCategoryService
@@ -31,7 +32,7 @@ class SubCategoryService
         return $subcategories;
     }
 
-    public static function getSubCategoryForSelect(): SubCategory
+    public static function getSubCategoryForSelect(): Collection
     {
         return SubCategory::orderBy('name', 'asc')
             ->get();

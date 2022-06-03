@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 
-    <form method="GET" action="{{ url('subcategory') }}">
+    <form method="GET" action="{{ url('admin/subcategory') }}">
         <div class="card">
             <div class="card-header">
                 Filtrar
@@ -91,7 +91,7 @@
                     Não existem Sub Categorias cadastradas. Você pode começar a cadastrar agora.
                 </div>
 
-                <a href='{{ url("subcategory/form") }}' class='btn btn-lg btn-success'> Cadastrar Sub Categoria </a>
+                <a href='{{ url("admin/subcategory/form") }}' class='btn btn-lg btn-success'> Cadastrar Sub Categoria </a>
             @endif
         </div>
 

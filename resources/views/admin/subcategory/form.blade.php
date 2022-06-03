@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="container">
-    <form action='{{ url("subcategory/save") }}@if(isset($subcategory))/{{ $subcategory->id }}@endif' method='POST'>
+    <form action='{{ url("admin/subcategory/save") }}@if(isset($subcategory))/{{ $subcategory->id }}@endif' method='POST'>
         @csrf
         <div class='card'>
             <div class='card-header'>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('subcategory') }}">Sub Categoria</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/subcategory') }}">Sub Categoria</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Nova Subcategoria</li>
                     </ol>
                 </nav>

@@ -33,9 +33,13 @@
         <div class="row">
             <div class="col-12 background-blue" style="height: 200px;">
                 <div class="row">
-                    <div class="col-8 offset-2">
+                    <div class="col-md-6 col-lg-6 col-sm-12 offset-2">
                         <h1 class="mt-3"> BIBLIOTECA DE ARTIGOS CIENTÍFICOS </h1>
                         <p> Seja bem vindo ao acervo de artigos da <b> Fontoura Editora </b> </p>
+                    </div>
+
+                    <div class="col-md-4 col-lg-4 col-sm-12">
+                        <img class="img mt-3" src="{{ asset('img/cpef_logo.png') }}">
                     </div>
                 </div>
             </div>
@@ -47,7 +51,7 @@
                     @if(isset($pageForMenu) && count($pageForMenu) > 0)
                         @foreach($pageForMenu as $menu)
                             <li class="nav-item  text-center">
-                                <a class="nav-link " href="{{ url('/pages/' . $menu->id) }}"> {{ $menu->name }} </a>
+                                <a class="nav-link " href="{{ url('/page/' . $menu->id) }}"> {{ $menu->name }} </a>
                             </li>
                         @endforeach
                     @endif
@@ -75,10 +79,10 @@
     </main>
 
     <div class="row">
-        <div class="col-12 background-blue ">
+        <div class="col-12 background-blue">
             <div class="row">
-                <div class="offset-2 col-md-8 col-lg-8 col-sm-12 py-3">
-                    <p> Começa o footer <p/>
+                <div class="offset-2 col-md-4 col-lg-4 col-sm-12">   
+                    <img class="img w-100 m-3" src="{{ asset('img/fd_logo_branco.png') }}">
                 </div>
             </div>
         </div>
