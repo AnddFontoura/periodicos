@@ -15,19 +15,19 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('subcategory_id');
-            $table->string('name',200);
-            $table->string('path',1000);
-            $table->text('authors');
-            $table->text('resume');
-            $table->text('abstract');
+            $table->unsignedBigInteger('subcategory_id')->nullable();
+            $table->string('name',1000);
+            $table->string('path',1000)->nullable(true);
+            $table->text('authors')->nullable(true);
+            $table->text('resume')->nullable(true);
+            $table->text('abstract')->nullable(true);
             $table->integer('pages')->default(0);
-            $table->text('keywords');
+            $table->text('keywords')->nullable(true);
             $table->text('image')->nullable(true);
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('subcategory_id')->references('id')->on('sub_categories');
+            $table->foreign('subcategory_id')->references('id')->on('sub_categories')->onDelete('SET NULL');
         });
     }
 

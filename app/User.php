@@ -16,7 +16,6 @@ class User extends Authenticatable
 {
     use Notifiable;
     use softDeletes;
-    use HasApiTokens;
 
     /**
      * The attributes that are mass assignable.

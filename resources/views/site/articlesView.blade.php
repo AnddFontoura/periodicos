@@ -6,7 +6,7 @@
 
         <h3 class="border-bottom"> {{$article->name }}</h3>
 
-        <a href="{{ asset('articles/' . $article->path) }}">
+        <a href="{{ asset('storage/articles/' . $article->path) }}">
         <div class="alert alert-success">
             Para baixar o artigo clique aqui
         </div>

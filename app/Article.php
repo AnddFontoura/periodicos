@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model
@@ -27,8 +28,8 @@ class Article extends Model
         'updated_at',
     ];
 
-    public function subcategory(): belongsTo
+    public function subcategory()
     {
-        return $this->belongsTo(SubCategory::class, 'subcategory_id');
+        return $this->hasOne(SubCategory::class,'id', 'subcategory_id');
     }
 }

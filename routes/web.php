@@ -13,9 +13,9 @@
 
 Auth::routes();
 
-Route::get('/register', function() {
+/*Route::get('/register', function() {
     return view('layouts.error');
-});
+});*/
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
