@@ -57,7 +57,7 @@ class ChangePageDatabase extends Command
                 ]
             );
             
-            if ($externalCategory->page_status == false) {
+            if ($externalCategory->pagina_status == false) {
                 $page->delete();
             }
 

@@ -63,6 +63,10 @@ class ChangeArticleDatabase extends Command
                     
                 ]
             );
+            
+            if ($externalArticle->arquivo_status == false) {
+                $article->delete();
+            }
 
             $bar->advance();
         }

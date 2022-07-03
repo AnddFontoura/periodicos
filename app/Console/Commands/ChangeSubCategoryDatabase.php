@@ -56,6 +56,10 @@ class ChangeSubCategoryDatabase extends Command
                     'category_id' => $externalSubCategory->categoria_id
                 ]
             );
+            
+            if ($externalSubCategory->categoria_sub_status == false) {
+                $subCategory->delete();
+            }
 
             $bar->advance();
         }

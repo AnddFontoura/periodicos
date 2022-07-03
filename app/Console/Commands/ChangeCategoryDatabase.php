@@ -58,6 +58,10 @@ class ChangeCategoryDatabase extends Command
                 ]
             );
 
+            if ($externalCategory->categoria_status == false) {
+                $category->delete();
+            }
+
             $bar->advance();
         }
 
