@@ -11,16 +11,21 @@ class ArticlesService
     public static function filterArticles(Request $request): Builder
     {
         $subCategoryId = $request->get('subCategoryId');
-        $name = $request->get('subCategoryId');
-        $authors = $request->get('subCategoryId');
-        $resume = $request->get('subCategoryId');
-        $abstract = $request->get('subCategoryId');
-        $keywords = $request->get('subCategoryId');
+        $name = $request->get('articleName');
+        $authors = $request->get('articleAuthors');
+        $resume = $request->get('articleResume');
+        $abstract = $request->get('articleAbstract');
+        $keywords = $request->get('articleKeywords');
+        $articleId = $request->get('articleId');
 
         $articles = Article::query();
 
+        if ($articleId) {
+            $articles = $articles->where('id', '=', $articleId);
+        }
+
         if ($subCategoryId) {
-            $articles = $articles->where('id', '=', $subCategoryId);
+            $articles = $articles->where('sub_category_id', '=', $subCategoryId);
         }
 
         if ($name) {

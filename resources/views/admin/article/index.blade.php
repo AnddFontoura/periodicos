@@ -12,6 +12,36 @@
             </nav>
         </div>
 
+        <form method="GET" action="{{ url('admin/article') }}">
+        <div class="card">
+            <div class="card-header">
+                Filtrar
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="floatingSubCategoryId" placeholder="Id do Artigo" value='@if(Request::get('articleId')){{ Request::get('articleId') }}@endif' name='articleId'>
+                            <label for="floatingCategoryName">Id do Artigo </label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingSubCategoryName" placeholder="Nome do Artigo" value='@if(Request::get('articleName')){{ Request::get('articleName') }}@endif' name='articleName'>
+                            <label for="floatingCategoryName">Nome do Artigo </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-header text-end">
+                <button class="btn btn-success" type="submit">Filtrar</button>
+            </div>
+        </div>
+    </form>
+
         <div class='card-body'>
             @if(sizeof($articles) > 0)
                 <table class="table table-striped">
