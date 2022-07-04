@@ -11,20 +11,20 @@
 
     <!-- Scripts -->
     <script src="https://kit.fontawesome.com/0cc6f43f73.js" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('/js/jquery.js') }}"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('/js/bootstrap.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/site.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/site.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" />
 </head>
