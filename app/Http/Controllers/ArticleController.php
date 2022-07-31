@@ -29,7 +29,7 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         $articles = ArticlesService::filterArticles($request);
-        $articles = $articles::paginate(20);
+        $articles = $articles->paginate(20);
 
         return view('admin.article.index', compact('articles'));
     }

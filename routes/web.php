@@ -66,3 +66,4 @@ Route::get('page/{id}', 'SiteController@index');
 Route::get('category/{id}', 'SiteController@subcategoryList');
 Route::get('subcategory/{id}', 'SiteController@articleList');
 Route::get('article/{id}', 'SiteController@articleView');
+Route::get('search', 'SiteController@articleSearch');

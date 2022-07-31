@@ -66,7 +66,18 @@
         </div>
 
         <div class="col-sm-12 col-lg-4 col-md-4">
-            <h3> Publicações </h3>
+            <h3> Pesquisar artigos </h3>
+            <form action="{{ url('search') }}" method='GET'>
+                <div class="form-group"> 
+                    <input type='text' class='form-control' name='search'> </input>
+                </div>
+                
+                <div class="form-group mt-3">
+                    <input type='submit' class='btn btn-sm btn-success w-100'>
+                </div>
+            </form>
+
+            <h3 class="mt-3"> Publicações </h3>
 
             <ul class="list-group">
                 @if(isset($categoryForMenu) && count($categoryForMenu) > 0)

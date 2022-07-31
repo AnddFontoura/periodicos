@@ -65,4 +65,24 @@ class SiteController extends Controller
 
         return view('site.articlesView', compact('article', 'pageForMenu', 'categoryForMenu'));
     }
+
+    public function articleSearch(Request $request)
+    {
+        $this->validate($request, [
+            'search' => 'required|string|min:1|max:100'
+        ]);
+
+        $searchTerm = $request->get('search');
+
+        $pageForMenu = $this->pageForMenu;
+        $categoryForMenu = $this->categoryForMenu;
+
+        $articles = Article::orWhere('name', 'like', '%' . $searchTerm . '%')
+            ->orWhere('authors', 'like', '%' . $searchTerm . '%')
+            ->orWhere('resume', 'like', '%' . $searchTerm . '%')
+            ->orWhere('abstract', 'like', '%' . $searchTerm . '%')
+            ->paginate(20);
+
+        return view('site.articlesList', compact('articles', 'pageForMenu', 'categoryForMenu'));
+    }
 }
