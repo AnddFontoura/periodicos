@@ -17,7 +17,7 @@ Auth::routes();
     return view('layouts.error');
 });*/
 
-Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth', 'isAdmin'], 'prefix' => 'admin'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::group(['prefix' => 'subcategory'], function() {
