@@ -23,7 +23,7 @@
                     <select class="form-control select2" name="categoryId" id="floatingCategoryName" placeholder="Nome da Categoria">
                         @if(count($categories) > 0)
                             @foreach($categories as $category)
-                                <option value="{{ $category->id }}" @if(isset($subcategory) && $category->subcategory_id == $subCategory->id) selected @endif> {{ $category->name }} </option>
+                                <option value="{{ $category->id }}" @if(isset($subcategory) && $category->id == $subcategory->category_id) {{ __('selected') }} @endif> {{ $category->name }} </option>
                             @endforeach
                         @else
                             <option selected>Nenhuma categoria cadastrada, antes de continuar você deve cadastra ao menos uma</option>

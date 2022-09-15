@@ -95,7 +95,7 @@ class SubCategoryController extends Controller
         if (empty($checkIfNameIsBeingUsedInAnotherSubCategory)) {
             $subcategory = Subcategory::where('id', $id)
                 ->update([
-                    'categoryId' => $request['categoryId'],
+                    'category_id' => $request['categoryId'],
                     'name' => $request['name'],
                     'description' => $request['description']
                 ]);

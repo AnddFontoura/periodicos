@@ -53,7 +53,7 @@
         <div class='card-header'>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('subcategory') }}">Sub Categoria</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin/subcategory') }}">Sub Categoria</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Listar</li>
                 </ol>
             </nav>
@@ -78,8 +78,8 @@
                             <td> {{ $subcategory->category->name }} </td>
                             <td> {{ $subcategory->name }} </td>
                             <td class='text-end'>
-                                <a href='{{ url("subcategory/view/" . $subcategory->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
-                                <a href='{{ url("subcategory/form/" . $subcategory->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
+                                <a href='{{ url("admin/subcategory/view/" . $subcategory->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>
+                                <a href='{{ url("admin/subcategory/form/" . $subcategory->id) }}'><div class='btn btn-primary fas fa-edit fa-lg'></div></a>
                                 <div class='btn btn-danger fas fa-trash-alt fa-lg deleteCategory' data-id='{{ $subcategory->id }}'></div>
                             </td>
                         </tr>
