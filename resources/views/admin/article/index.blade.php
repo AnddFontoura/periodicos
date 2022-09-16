@@ -58,7 +58,7 @@
                         @foreach($articles as $article)
                         <tr>
                             <td> {{ $article->id }} </td>
-                            <td> {{ $article->subcategory->name }} </td>
+                            <td> {{ $article->subcategory->name ?? '' }} </td>
                             <td> {{ $article->name }} </td>
                             <td class='text-end'>
                                 <a href='{{ url("admin/article/view/" . $article->id) }}'><div class='btn btn-success fas fa-eye fa-lg'></div></a>

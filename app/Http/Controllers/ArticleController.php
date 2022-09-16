@@ -17,7 +17,6 @@ class ArticleController extends Controller
     {
         $this->validate($request, [
             'subCategoryId' => 'required|int',
-            'name' => 'required|max:254',
             'authors' => 'required',
             'resume' => 'required',
             'abstract' => 'required',
@@ -72,7 +71,8 @@ class ArticleController extends Controller
         ]);
 
         if ($request->file('fileToUpload')) {
-            $fileName = $request->file('fileToUpload')->store('public/articles');
+            $fileName = $article->id . Str::slug($article->name) . Carbon::now()->timestamp;
+            Storage::disk('articles')->put($fileName, $request['fileToUpload']);
 
             $article->path = $fileName;
             $article->save();
@@ -99,32 +99,26 @@ class ArticleController extends Controller
     {
         $request = $request->all();
 
-        $checkIfNameIsBeingUsedInAnotherArticle = Article::where('name', $request['name'])
-            ->where('id', '<>', $id)
-            ->first();
+        $article = Article::where('id', $id)
+            ->update([
+                'subcategory_id' => $request['subCategoryId'],
+                'name' => $request['name'],
+                'authors' => $request['authors'],
+                'resume' => $request['resume'],
+                'abstract' => $request['abstract'],
+                'keywords' => $request['keywords'],
+            ]);
 
-        if (empty($checkIfNameIsBeingUsedInAnotherArticle)) {
-            $article = Category::where('id', $request['id'])
-                ->update([
-                    'category_id' => $request['categoryId'],
-                    'name' => $request['name'],
-                    'authors' => $request['authors'],
-                    'resume' => $request['resume'],
-                    'abstract' => $request['abstract'],
-                    'keywords' => $request['keywords'],
-                ]);
+        $article = Article::where('id', $id)->first();
 
-            if ($request['fileToUpload']) {
-                $fileName = $article->id . Str::slug($article->name) . Carbon::now()->timestamp;
-                Storage::disk('articles')->put($fileName, $request['fileToUpload']);
+        if ($request['fileToUpload']) {
+            $fileName = $article->id . Str::slug($article->name) . Carbon::now()->timestamp;
+            Storage::disk('articles')->put($fileName, $request['fileToUpload']);
 
-                $article->path = $fileName;
-                $article->save();
-            }
-        } else {
-            return back()->withErrors(['name' => 'Name already being used in another article']);
+            $article->path = $fileName;
+            $article->save();
         }
-
+    
         return back();
     }
 }

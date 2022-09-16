@@ -23,7 +23,7 @@
                     <select class="form-control select2" name="subCategoryId" id="floatingSubCategoryName">
                         @if(count($subCategories) > 0)
                             @foreach($subCategories as $subCategory)
-                                <option value="{{ $subCategory->id }}" @if(isset($category) && $category->subcategory_id == $subCategory->id) selected @endif> {{ $subCategory->name }} </option>
+                                <option value="{{ $subCategory->id }}" @if(isset($article) && $article->subcategory_id == $subCategory->id) selected @endif> {{ $subCategory->name }} </option>
                             @endforeach
                         @else
                             <option selected>Nenhuma Sub categoria cadastrada, antes de continuar você deve cadastra ao menos uma</option>
@@ -47,8 +47,8 @@
                     <textarea id="ckeditor-author" name="authors">@if(isset($article)){{ $article->authors }}@endif  {{ old('authors') }}</textarea>
                 </div>
 
-                @error('name')
-                    <div class="alert alert-danger">{{ resume }}</div>
+                @error('resume')
+                    <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="mb-3">
                     <label class="form-label">Resumo</label>
