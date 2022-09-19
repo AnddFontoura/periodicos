@@ -71,8 +71,8 @@ class ArticleController extends Controller
         ]);
 
         if ($request->file('fileToUpload')) {
-            $fileName = $article->id . Str::slug($article->name) . Carbon::now()->timestamp;
-            Storage::disk('articles')->put($fileName, $request['fileToUpload']);
+            //$fileName = $article->id . Str::slug($article->name) . Carbon::now()->timestamp;
+            $fileName = Storage::disk('articles')->put('', $request['fileToUpload']);
 
             $article->path = $fileName;
             $article->save();
@@ -112,8 +112,8 @@ class ArticleController extends Controller
         $article = Article::where('id', $id)->first();
 
         if ($request['fileToUpload']) {
-            $fileName = $article->id . Str::slug($article->name) . Carbon::now()->timestamp;
-            Storage::disk('articles')->put($fileName, $request['fileToUpload']);
+            //$fileName = $article->id . Str::slug($article->name) . Carbon::now()->timestamp;
+            $fileName = Storage::disk('articles')->put('', $request['fileToUpload']);
 
             $article->path = $fileName;
             $article->save();
